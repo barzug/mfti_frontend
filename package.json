@@ -1,0 +1,14 @@
+{
+	"name": "full-stack_mfti",
+	"version": "1.0.0",
+	"description": "Full-stack разработка. МФТИ",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"keywords": [],
+	"author": "Sergey Barsukov",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}
