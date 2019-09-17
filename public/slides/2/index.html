@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Введение во Frontend</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="icon" type="image/png" href="/lib/favicon.png" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/lib/shower/themes/styles/screen-4x3.css">
+	<link rel="stylesheet" href="/lib/slides.css">
+
+</head>
+
+<body class="shower list">
+
+	<header class="caption">
+		<h1>Full-stack разработка</h1>
+		<p>МФТИ</p>
+	</header>
+
+	<section class="slide first">
+		<h2 class="shout">Семинар №2<br />
+			<small>Слайды доступны по ссылке<br />
+				<a href="https://mfti-frontend.herokuapp.com/">mfti-frontend.herokuapp.com</a>
+			</small>
+		</h2>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">JavaScript</h2>
+	</section>
+
+
+	<section class="slide">
+		<h2>Что есть JavaScript?</h2>
+		<p class="medium-content"></p>
+		<ul lang="ru">
+			<li><strong>ECMAScript</strong> &mdash; <mark>спецификация</mark> скриптового языка программирования</li>
+			<li><strong>JavaScript</strong> &mdash; <mark>язык программирования</mark>, одна из реализаций
+				спецификации&nbsp;ECMAScript (наряду с JScript и ActionScript), их ещё называют диалектами ECMAScript</li>
+			<li><strong>ECMA-262</strong> &mdash; <mark>стандарт компании Ecma International</mark>, по которому
+				разрабатывается спецификация ECMAScript
+				<ul lang="en">
+					<li><a href="https://www.ecma-international.org/ecma-262/9.0/index.html" target="_blank">последняя версия</a>:
+						9-е издание в июне 2018 года</li>
+					<li><a href="https://tc39.github.io/ecma262/" target="_blank">последний черновик</a>: ECMAScript® 2019
+						Language Specification</li>
+				</ul>
+			</li>
+			<li>ISO/IEC 16262:2011(E) &mdash; <em>другой стандарт</em>, разрабатываемый ISO (в настоящее время активно не
+				развивается)</li>
+		</ul>
+
+		<p class="note"><a href="https://habrahabr.ru/company/nixsolutions/blog/342904/" target="_blank">Подробнее про
+				термины</a></p>
+	</section>
+
+	<section class="slide">
+		<h2>Как это было</h2>
+		<p class="medium-content"></p>
+		<ul lang="en">
+			<li><strong>Brendan Eich</strong> разработал прототип языка в мае 1995 за 10 дней под кодовым названием Mocha</li>
+			<li>В <strong>сентябре 1995</strong> в бета-версии браузера Netscape Navigator 2.0 он был выпущен под названием
+				LiveScript
+			</li>
+			<li>В декабре его переименовали в <strong>JavaScript</strong></li>
+			<li>Июнь 1997 &mdash; организация <strong>Ecma International</strong> выпустила первую версию стандарта
+				ECMA-262, в котором описывала спецификацию ECMAScript
+			</li>
+			<li>Июнь 1998 &mdash; спецификация <strong>ECMAScript 2</strong> и международный стандарт <strong>ISO/IEC
+					16262</strong></li>
+		</ul>
+
+		<p class="note"><a href="https://ponyfoo.com/articles/standard" target="_blank">Подробнее про историю развития</a>
+		</p>
+	</section>
+
+	<section class="slide">
+		<h2>Как это было</h2>
+		<ul lang="ru">
+			<li>Декабрь 1999 &mdash; <mark>ECMAScript 3</mark></li>
+			<li><mark>ECMAScript 4 (abandoned)</mark> &mdash; заброшенная версия</li>
+			<li>Декабрь 2009 &mdash; <mark>ECMAScript 5</mark></li>
+			<ul>
+				<li>Июнь 2011 &mdash; <mark>ECMAScript 5.1</mark> (ISO/IEC 16262:2011)</li>
+			</ul>
+			<li>Июль 2015 &mdash; <mark>ECMAScript 2015</mark> (ECMAScript 6th edition) &mdash; ES6 Harmony</li>
+			<li>Июль 2016 &mdash; <mark>ECMAScript 2016</mark> (ECMAScript 7th edition)</li>
+			<li>Июнь 2017 &mdash; <mark>ECMAScript 2017</mark> (ECMAScript 8th edition)</li>
+			<li>Июнь 2018 &mdash; <mark>ECMAScript 2018</mark> (ECMAScript 9th edition)</li>
+			<li><em>Лето 2019</em> &mdash; <mark>ECMAScript 2019</mark> (и так далее)</li>
+		</ul>
+	</section>
+
+	<section class="slide question">
+		<h2 style="text-align: center; padding: 0"><span style="font-size: 100%">Типы данных</span></h2>
+	</section>
+
+	<section class="slide">
+		<h2>Основные типы данных в JavaScript</h2>
+		<p class="medium-content"></p>
+		<ol lang="ru">
+			<li>Number</li>
+			<li>Boolean</li>
+			<li>String</li>
+			<li>Object</li>
+			<li>null</li>
+			<li>undefined</li>
+		</ol>
+	</section>
+
+	<section class="slide question">
+		<h2 style="text-align: center; padding: 0"><span style="font-size: 100%">Переменные</span></h2>
+	</section>
+
+	<section class="slide">
+		<h2>Объявление переменных</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code>var i = 10;</code>
+		<code>let j = 10;</code>
+		<code>const k = 10;</code>
+		<code> </code>
+		<code> </code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Поднятие переменных</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code>console.log(foo);</code>
+		<code>console.log(bar);</code>
+		<code>console.log(i);</code>
+		<code> </code>
+		<code>var foo = 'bar';</code>
+		<code> </code>
+		<code>if (false) {</code>
+		<code>    var bar = 42;</code>
+		<code>}</code>
+		<code> </code>
+		<code>for (var i = 0; i < 10; i++) {}</code>
+		<code> </code>
+		<code>console.log(i);</code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Поднятие переменных</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code>console.log(foo); // undefined</code>
+		<code>console.log(bar); // undefined</code>
+		<code>console.log(i); // undefined</code>
+		<code> </code>
+		<code>var foo = 'bar';</code>
+		<code> </code>
+		<code>if (false) {</code>
+		<code>    var bar = 42;</code>
+		<code>}</code>
+		<code> </code>
+		<code>for (var i = 0; i < 10; i++) {}</code>
+		<code> </code>
+		<code>console.log(i); // 10</code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>let / const</code></h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code>if (true) {</code>
+		<code>    <mark>let</mark> bar = 42;</code>
+		<code>}</code>
+		<code>console.log(foo);  // ReferenceError</code>
+		<code>console.log(bar);  // ReferenceError</code>
+		<code> </code>
+		<code><mark>const</mark> foo = {a:1};</code>
+		<code>foo = {a:3};  // TypeError</code>
+		<code> </code>
+		<code>foo.a = 2;</code>
+		<code>console.log(foo);  // {a:2}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Функции в JavaScript</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Объекты первого класса</h2>
+		<p class="medium-content">
+			<blockquote>
+				Объектами первого класса (англ. first-class object, first-class entity, first-class citizen) в контексте
+				конкретного языка программирования называются элементы, которые могут быть переданы как параметр, возвращены из
+				функции, присвоены переменной.
+			</blockquote>
+		</p>
+
+		<p class="medium-content">
+			Функции в JavaScript – объекты первого класса.
+			<br />
+			Это значит, что в JS можно создавать
+			<mark>функции высшего порядка</mark>
+		</p>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">
+			<strong>Замыкания!</strong> <br>
+			<small style="font-size: 60%; display: inline-block;">или как работает JavaScript</small>
+		</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Лексическое окружение</h2>
+		<p>Все переменные внутри функции &mdash; это свойства специального внутреннего объекта
+			<mark>LexicalEnvironment</mark>
+			, который создаётся при её запуске
+		</p>
+		<pre class="hljs js">
+			<code>function sayHello(name) {</code>
+			<code>    const magicNumber = 42;</code>
+			<code>    console.log(`Hello, ${name}`);</code>
+			<code>} </code>
+			<code> </code>
+			<code>sayHello('Лаврентий'); </code>
+			<code>// LexicalEnvironment = {name: 'Лаврентий', magicNumber: 42}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Внешние переменные</h2>
+		<pre class="hljs js">
+			<code>var otherName = 'Ivan'; // window.otherName = Ivan</code>
+			<code> </code>
+			<code>function sayHello(name) {</code>
+			<code>    let magicNumber = 42;</code>
+			<code>    console.log(`Hello, ${otherName}`);</code>
+			<code>}</code>
+			<code> </code>
+			<code>sayHello('Лаврентий'); </code>
+			<code>// LexicalEnvironment = {name: 'Лаврентий', magicNumber: 42}</code>
+			<code>// sayHello.[[Scope]] = window</code>
+			<code> </code>
+		</pre>
+	</section>
+
+
+	<section class="slide question">
+		<h2>
+			<small style="font-size: 60%; display: inline-block;">Ссылка на <code><a
+				href="https://www.ecma-international.org/ecma-262/#sec-executable-code-and-execution-contexts"
+				target="_blank">стандарт</a></code></small>
+		</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Демонстрация</h2>
+		<div style="position:relative; width: 100%; height: 80%; overflow: hidden;">
+			<img class="place" src="le.png" style="transform-origin: center; transform: translate(-50%,-48%) scale(0.37);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Замыкание</h2>
+		<pre class="hljs js">
+		<code>function sum(operand1) {</code>
+		<code>    return function(operand2) {</code>
+		<code>        console.log(operand1 + operand2);</code>
+		<code>    }</code>
+		<code>}</code>
+		<code> </code>
+		<code>// const sum = a => b => a + b</code>
+		<code> </code>
+		<code>let plus3 = sum(3);</code>
+		<code>plus3(6); // 9</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Замыкание</h2>
+		<div style="position:relative;width: 100%; height: 85%; overflow: hidden">
+			<img class="place" src="closure.png" style="transform-origin: center;transform: translate(-50%,-52%) scale(0.7);">
+		</div>
+	</section>
+
+
+	<section class="slide question">
+		<h2 style="text-align: center; padding: 0"><span style="font-size: 100%">ES6-классы</span></h2>
+	</section>
+
+	<section class="slide">
+		<h2>ES6-классы</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code><mark>class</mark> User {</code>
+		<code>    <mark>constructor</mark>(login, password) {</code>
+		<code>        this._login = login;</code>
+		<code>        this._password = password;</code>
+		<code>    }</code>
+		<code>    hello() {</code>
+		<code>        console.log('Hello, ' + this._login);</code>
+		<code>    }</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>ES6-классы: cтатические методы</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code>class MathUtils {</code>
+		<code>    <mark>static</mark> sqr(number) {</code>
+		<code>        return number * number;</code>
+		<code>    }</code>
+		<code>    <mark>static</mark> abs(number) {</code>
+		<code>        return number < 0 ? -number : number;</code>
+		<code>    }</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>ES6-классы</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code>const user1 = new User('Alex', 'qwerty123');</code>
+		<code>const user2 = new User('Jon', 'passw0rd');</code>
+		<code> </code>
+		<code>user1.hello();       // Hello, Alex</code>
+		<code>user2.hello();       // Hello, Jon</code>
+		<code> </code>
+		<code>MathUtils.sqr(6);    // 36</code>
+		<code>MathUtils.abs(-42);  // 42</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>ES6-классы: наследование</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code>class View {</code>
+		<code>    constructor(el) {</code>
+		<code>        this._el = el;</code>
+		<code>    }</code>
+		<code>    hide() {</code>
+		<code>        this._el.hidden = true;</code>
+		<code>    }</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>ES6-классы: наследование</h2>
+		<pre class="hljs js">
+		<code>class LoginView <mark>extends View</mark> {</code>
+		<code>    constructor() {</code>
+		<code>        <mark>super</mark>(document.getElementById('login'));</code>
+		<code>        this._form = this._el.querySelector('.login__form');</code>
+		<code>    }</code>
+		<code>    hide() {</code>
+		<code>        <mark>super</mark>.hide();</code>
+		<code>        this._form.clear();</code>
+		<code>    }</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<!-- <section class="slide question">
+		<h2 style="text-align: center; padding: 0"><span style="font-size: 100%">Промисы</span></h2>
+	</section>
+
+	<section class="slide">
+		<h2>Промисы</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>function getJSON(url) {</code>
+			<code>    return new <mark>Promise</mark>(function (resolve, reject) {</code>
+			<code>        const xhr = new XMLHttpRequest();</code>
+			<code>        xhr.open('GET', url, true);</code>
+			<code>        xhr.onreadystatechange = function () {</code>
+			<code>            if (xhr.readyState === 4) {</code>
+			<code>                <mark>resolve(JSON.parse(xhr.responseText));</mark></code>
+			<code>            }</code>
+			<code>        }</code>
+			<code>    }</code>
+			<code>}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Промисы</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>getJSON('/data/books.json')</code>
+			<code>    .<mark>then</mark>(function (books) {</code>
+			<code>        books.forEach(function (book) {</code>
+			<code>            console.log(book.title);</code>
+			<code>        });</code>
+			<code>    })</code>
+			<code>    .<mark>catch</mark>(function (error) {</code>
+			<code>         console.error(error);</code>
+			<code>    });</code>
+			<code>    .<mark>finally</mark>(function () {</code>
+			<code>         console.log('Promise ends');</code>
+			<code>    });</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Методы промисов</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>// Вернёт промис в состоянии <mark>fulfilled</mark> («выполнено успешно»)</code>
+			<code>Promise.resolve( ... );</code>
+			<code>// Вернёт промис в состоянии <mark>rejected</mark> («выполнено с ошибкой»)</code>
+			<code>Promise.reject( ... );</code>
+			<code>// Выполнит все промисы "параллельно"</code>
+			<code>Promise.all( [ ... ] );</code>
+			<code>// Вернёт промис, выполнившийся раньше всех</code>
+			<code>Promise.race( [ ... ] );</code>
+			<code> </code>
+		</pre>
+	</section> -->
+
+	<section class="slide">
+		<h2>Что почитать</h2>
+		<ul lang="en">
+			<li><a href="learn.javascript.ru" target="_blank">learn.javascript.ru</a>
+				&mdash; лучший ресурс для изучения JavaScript
+			</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Ограничения JS в браузере</h2>
+		<p class="small-content">
+			<ul lang="ru">
+				<li>Нельзя взаимодействовать с файловой системой</li>
+				<li>Нет доступа к сетевым функциям, кроме того, что предоставляет сам браузер</li>
+				<li>Нет возможности организовывать многопоточные вычисления. Есть воркеры, но они имеют определённые
+					ограничения
+				</li>
+				<li>Нельзя создавать новые процессы / запускать программы (открытие новых вкладок не считается)</li>
+			</ul>
+		</p>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">React</h2>
+	</section>
+
+	<section class="slide">
+		<h2>SPA</h2>
+		<p class="medium-content">
+			<blockquote>
+				<strong>Single page application</strong> &mdash; веб-сайт, использующий единственный
+				HTML-документ как оболочку для всех веб-страниц и организующий взаимодействие с пользователем через динамически
+				подгружаемые HTML, CSS, JavaScript
+			</blockquote>
+		</p>
+
+		<p class="small-content">
+			<ul lang="ru">
+				<li>React</li>
+				<li>Angular</li>
+				<li>Vue</li>
+			</ul>
+		</p>
+	</section>
+
+	<section class="slide">
+		<h2>Что такое React?</h2>
+		<p class="medium-content">
+			<blockquote>
+				<strong>React</strong> &mdash; JavaScript-библиотека для создания пользовательских интерфейсов
+			</blockquote>
+		</p>
+
+		<p class="small-content">
+			<ul lang="ru">
+				<li>Создана и поддерживается facebook-ом</li>
+				<li>Основана на компонентах, представляющих собой функции от входных переменных и состояния</li>
+				<li>Использует Virtual Dom для оптимизации перерисовки интерфейса</li>
+			</ul>
+		</p>
+	</section>
+
+
+
+	<section class="slide">
+		<h2>Virtual DOM</h2>
+		<p class="medium-content"></p>
+		<ul>
+			<li>Вместо того, чтобы взаимодействовать с DOM напрямую, мы работаем с его <mark>легковесной копией</mark></li>
+			<li>Мы можем вносить изменения в копию, исходя из наших потребностей, а после этого применять изменения к
+				реальному DOM</li>
+			<li>При этом происходит сравнение DOM-дерева с его виртуальной копией, <mark>определяется разница и запускается
+					перерисовка того, что было изменено</mark></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Virtual DOM</h2>
+		<div style="position:relative;width: 100%; height: 75%;">
+			<img class="place" src="dom-vdom.png"
+				style="transform-origin: center;transform: translate(-48.5%,-50%) scale(0.7);">
+		</div>
+	</section>
+
+
+	<section class="slide">
+		<h2 class="shout">Практика</h2>
+	</section>
+
+	<!-- <section class="slide">
+		<h2>Сreate-react-app</h2>
+		<blockquote>
+			<p class="small-content"><b><a href="https://github.com/facebook/create-react-app"
+						target="_blank">Сreate-react-app</a></b> &mdash; официально поддерживаемый способ создания одностраничных
+				приложений React. Он предлагает настройки сборки без ручной конфигурации.</p>
+			<p>«Под капотом» используются <a href="https://webpack.js.org/" target="_blank">Webpack</a>, <a
+					href="https://babeljs.io/" target="_blank">Babel</a> и многое другое
+			</p>
+		</blockquote>
+		<p><code>~$ npx create-react-app my-app	</code></p>
+		<p><code>~$ cd my-app	</code></p>
+		<p class="note"><a href="https://www.npmjs.com/package/npx" target="_blank">Npx</a> &mdash; утилита для запуска
+			npm-пакетов</p>
+	</section> -->
+
+	<!-- <section class="slide">
+		<h2>Полезные ссылки</h2>
+		<ul lang="en">
+			<li><a href="https://github.com/azat-io/you-dont-know-js-ru" target="_blank">"Вы не знаете JavaScript"</a>
+				&mdash; серия переводов популярных и простых книг по JavaScript
+			</li>
+			<li><a href="http://frontender.info/" target="_blank">Frontender Magazine</a> и <a href="http://forwebdev.ru/"
+					target="_blank">Проект «For
+					Web»</a> &mdash; два неплохих русскоязычных блога, посвящённых Frontend-разработке
+			</li>
+			<li>Документация на <a href="https://www.sitepoint.com/creating-a-http-server-in-node-js/"
+					target="_blank">статью</a>,
+				где описывается как создать сервер на Node.js и на
+				<a href="https://github.com/expressjs/express" target="_blank">npm-модуль express</a>, который позволяет
+				делать это намного проще
+			</li>
+			<li><a href="https://habrahabr.ru/company/yandex/blog/276035/" target="_blank">Очень подробное описание</a>
+				методологии БЭМ и <a href="https://ru.bem.info/methodology/quick-start/" target="_blank">сайт проекта</a>
+			</li>
+			<li><a href="https://www.youtube.com/user/pepelsbey" target="_blank">Классные видео</a> с советами по верстке
+			</li>
+			<li>И напоследок, <a href="https://www.youtube.com/watch?v=ryJSRZzAvUs" target="_blank">смешное видео про
+					JS</a>,
+				просто чтобы отвлечься и посмеяться
+			</li>
+		</ul>
+	</section> -->
+
+	<section class="slide">
+		<h2 class="shout">Всем спасибо!</h2>
+	</section>
+
+	<div class="progress"></div>
+	<script src="/lib/shower/shower.min.js"></script>
+	<script src="/lib/hljs/highlight.pack.js"></script>
+	<script>
+		hljs.initHighlightingOnLoad();
+	</script>
+</body>
+
+</html>
