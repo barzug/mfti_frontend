@@ -440,7 +440,7 @@
 	<section class="slide">
 		<h2>Что почитать</h2>
 		<ul lang="en">
-			<li><a href="learn.javascript.ru" target="_blank">learn.javascript.ru</a>
+			<li><a href="https://learn.javascript.ru" target="_blank">learn.javascript.ru</a>
 				&mdash; лучший ресурс для изучения JavaScript
 			</li>
 		</ul>
@@ -498,9 +498,116 @@
 				<li>Использует Virtual Dom для оптимизации перерисовки интерфейса</li>
 			</ul>
 		</p>
+
+		<a href="https://ru.reactjs.org" target="_blank">ru.reactjs.org</a>
+	</section>
+
+	<section class="slide">
+		<h2>React-компонент</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+					<code>import React, {Component} from 'react';</code>
+					<code>import {render} from 'react-dom';</code>
+					<code> </code>
+					<code>class App extends Component {</code>
+					<code>	render() {</code>
+					<code>		return (</code>
+					<code>			&lt;h1&gt;Hello World&lt;/h1&gt;</code>
+					<code>		);</code>
+					<code>	}</code>
+					<code>}</code>
+	
+					<code>render(&lt;App &gt;, document.getElementById('root'));</li></code>
+					<code></code>
+					</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Функциональные компоненты</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+				<code>import React from 'react';</code>
+				<code> </code>
+				<code>const Avatar = (props) => &lt;img src={props.src} /&gt;</code>
+				<code> </code>
+				<code>const Header = () => (</code>
+				<code>	&lt;header&gt;</code>
+				<code>		&lt;Avatar src={'http://bestimage.com/1.png'} /&gt;</code>
+				<code>		Sergey Barsukov</code>
+				<code>	&lt;/header&gt;</code>
+				<code>)</code>
+
+				<code>render(&lt;App /&gt;, document.getElementById('root'));</li></code>
+				<code></code>
+				</pre>
+	</section>
+
+	<section class="slide">
+		<h2>JSX</h2>
+		<blockquote>
+			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое
+			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.
+		</blockquote>
+
+		<pre class="hljs js">
+			<code> </code>
+			<code>const element = (</code>
+			<code>	&lt;h1 className="greeting"/&gt;</code>
+			<code>		Привет, мир!</code>
+			<code>	&lt;/h1&gt;</code>
+			<code>);</code>
+			<code> </code>
+			<code> </code>
+		</pre>
+		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут
+
 	</section>
 
 
+	<section class="slide">
+		<h2>JSX</h2>
+		<blockquote>
+			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое
+			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.
+		</blockquote>
+		<pre class="hljs js">
+					<code> </code>
+					<code>const element = React.createElement(</code>
+					<code>	'h1',</code>
+  				<code>	{className: 'greeting'},</code>
+  				<code>	'Привет, мир!'</code>
+					<code>);</code>
+					<code> </code>
+					<code> </code>
+				</pre>
+		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут
+
+	</section>
+
+	<section class="slide">
+		<h2>JSX</h2>
+		<blockquote>
+			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое
+			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.
+		</blockquote>
+
+		<pre class="hljs js">
+				<code>// Примечание: этот код несколько упрощён.</code>
+				<code>const element = {</code>
+				<code>	type: 'h1',</code>
+				<code>	props: {</code>
+				<code>		className: 'greeting',</code>
+				<code>		children: 'Привет, мир!'</code>
+				<code>	}</code>
+				<code>};</code>
+				</pre>
+		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут
+
+	</section>
+
+
+
+	// компонентный подход
 
 	<section class="slide">
 		<h2>Virtual DOM</h2>
@@ -527,7 +634,7 @@
 		<h2 class="shout">Практика</h2>
 	</section>
 
-	<!-- <section class="slide">
+	<section class="slide">
 		<h2>Сreate-react-app</h2>
 		<blockquote>
 			<p class="small-content"><b><a href="https://github.com/facebook/create-react-app"
@@ -541,7 +648,7 @@
 		<p><code>~$ cd my-app	</code></p>
 		<p class="note"><a href="https://www.npmjs.com/package/npx" target="_blank">Npx</a> &mdash; утилита для запуска
 			npm-пакетов</p>
-	</section> -->
+	</section>
 
 	<!-- <section class="slide">
 		<h2>Полезные ссылки</h2>
