@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Введение во Frontend</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="icon" type="image/png" href="/lib/favicon.png" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/lib/shower/themes/styles/screen-4x3.css">
+	<link rel="stylesheet" href="/lib/slides.css">
+
+</head>
+
+<body class="shower list">
+
+	<header class="caption">
+		<h1>Full-stack разработка</h1>
+		<p>МФТИ</p>
+	</header>
+
+	<section class="slide first">
+		<h2 class="shout">Семинар №3<br />
+			<small>Слайды доступны по ссылке<br />
+				<a href="https://mfti-frontend.herokuapp.com/">mfti-frontend.herokuapp.com</a>
+			</small>
+		</h2>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Работа с сетью в JavaScript</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Протокол HTTP</h2>
+		<blockquote>
+			<p class="small-content"><b>HTTP (HyperText Transfer Protocol — «протокол передачи гипертекста»)</b> &mdash;
+				протокол прикладного уровня передачи данных (изначально &mdash; в виде гипертекстовых документов в формате
+				«HTML»), в настоящий момент используется для передачи произвольных данных</p>
+		</blockquote>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP запрос</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs http">
+			<code>// METHOD URI HTTP/VERSION <= стартовая строка</code>
+			<code>GET /slides.css HTTP/1.1</code>
+			<code>Host: mfti-frontend.herokuapp.com/</code>
+			<code>Content-Type: text/css; charset=utf-8</code>
+			<code>другие заголовки...</code>
+			<code> </code>
+			<code>        тело запроса (опционально)</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP ответ</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs http">
+			<code>// HTTP/VERSION STATUS_CODE REASON_PHRASE <= стартовая строка</code>
+			<code>HTTP/1.0 200 OK</code>
+			<code>Host: mfti-frontend.herokuapp.com/</code>
+			<code>Content-Type: text/css; charset=utf-8</code>
+			<code>другие заголовки...</code>
+			<code> </code>
+			<code>        тело ответа (опционально)</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Работа с XMLHttpRequest</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>// 1. Создаём новый объект XMLHttpRequest</code>
+			<code>const xhr = new XMLHttpRequest();</code>
+			<code>// 2. Конфигурируем его: GET-запрос на URL '/lib/slides.css'</code>
+			<code>xhr.open('GET', '/slides.css', <mark>false</mark>);</code>
+			<code> </code>
+			<code>// 3. Отсылаем запрос</code>
+			<code>xhr.send();</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Работа с XMLHttpRequest</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>// 4. Если код ответа сервера не 200, то это ошибка</code>
+			<code>console.log(`Ответ от сервера: ${xhr.status} ${xhr.statusText}`);</code>
+			<code>if (xhr.status === 200) {</code>
+			<code>    console.log(xhr.responseText);</code>
+			<code>} else {</code>
+			<code>    console.error('Ошибка!')</code>
+			<code>}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Пример POST-запроса</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>const xhr = new XMLHttpRequest();</code>
+			<code>xhr.open('POST', '/post', <mark>false</mark>);</code>
+			<code> </code>
+			<code>// Выставляем заголовок</code>
+			<code>xhr.<mark>setRequestHeader</mark>('Content-Type', 'text/plain; charset=utf-8');</code>
+			<code>xhr.send('Request payload');</code>
+			<code>// ждём ответа</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Отправка json в теле запроса</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>const xhr = new XMLHttpRequest();</code>
+			<code>xhr.open('POST', '/post', <mark>false</mark>);</code>
+			<code> </code>
+			<code>// Выставляем заголовок</code>
+			<code>xhr.<mark>setRequestHeader</mark>('Content-Type', 'application/json; charset=utf-8');</code>
+			<code>xhr.send(JSON.stringify({name: 'Alex'});</code>
+			<code>// ждём ответа</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Отправка бинарных данных в <br>теле запроса</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>const xhr = new XMLHttpRequest();</code>
+			<code>xhr.open('POST', '/post', <mark>false</mark>);</code>
+			<code> </code>
+			<code>const binary = new Uint8Array(1024 * 1024); // 1 MB данных</code>
+			<code>const blob = new Blob([binary], {type: 'application/octet-stream'});</code>
+			<code>xhr.send(blob);</code>
+			<code>// ждём ответа</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Отправка файлов в теле запроса</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>const xhr = new XMLHttpRequest();</code>
+			<code>xhr.open('POST', '/post', <mark>false</mark>);</code>
+			<code> </code>
+			<code>const fileInput = document.querySelector('input[type=file]');</code>
+			<code>const file = fileInput.files[0].file;</code>
+			<code>const formdata = new FormData();</code>
+			<code>formdata.append('file', file);</code>
+			<code>xhr.send(formdata);</code>
+			<code>// ждём ответа</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2><mark>Асинхронные</mark> запросы</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+			<code>const xhr = new XMLHttpRequest();</code>
+			<code>xhr.open('GET', '/lib/slides.css', <mark>true</mark>);</code>
+			<code> </code>
+			<code>xhr.<mark>onreadystatechange</mark> = function() {</code>
+			<code>    if (xhr.<mark>readyState</mark> !== 4) return;</code>
+			<code>    console.log(`Ответ от сервера: ${xhr.status} ${xhr.statusText}`);</code>
+			<code>    console.log(xhr.responseText);</code>
+			<code>}</code>
+			<code>xhr.send();</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Событие <code>readystatechange</code></h2>
+		<p class="medium-content"></p>
+		<pre class="hljs c">
+			<code>// Значения <mark>readyState</mark></code>
+			<code>const unsigned short UNSENT = 0; // начальное состояние</code>
+			<code>const unsigned short OPENED = 1; // вызван open</code>
+			<code>const unsigned short HEADERS_RECEIVED = 2; // получены заголовки</code>
+			<code>const unsigned short LOADING = 3; // загружается тело</code>
+			<code>const unsigned short DONE = 4; // запрос завершён</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Другие события</h2>
+		<p class="medium-content"></p>
+		<ul lang="ru">
+			<li><code>loadstart</code> &mdash; запрос начат</li>
+			<li><code>progress</code> &mdash; браузер получил очередной пакет данных</li>
+			<li><code>abort</code> &mdash; запрос был отменён вызовом <code>xhr.abort()</code></li>
+			<li><code>error</code> &mdash; произошла ошибка</li>
+			<li><code>load</code> &mdash; запрос был успешно (без ошибок) завершён</li>
+			<li><code>loadend</code> &mdash; запрос был прекращён по таймауту</li>
+			<li><code>readystatechange</code> &mdash; запрос был завершён (успешно или неуспешно)</li>
+		</ul>
+	</section>
+
+
+	<section class="slide">
+		<h2 class="shout">Promise и<br />Fetch API</h2>
+	</section>
+
+	<section class="slide question">
+		<h2>
+			<span style="font-size: 85%">Асинхронность в JavaScript</span>
+		</h2>
+	</section>
+
+	<section class="slide">
+		<!--
+    прежде чем говорить о промисах и прочей ерунде
+    надо рассказать о том что такое callback hell
+    или более широкое понятие pyramid of doom.
+    Не тот Doom который лучше чем DOM.
+    вспомним о том что такое callback-и
+    функции могут возвращать результат естественным путем
+    функции могут возвращать результат через callback (когда мы работаем с асинхронным кодом)
+    callback это функция которую мы передаем в другую функцию чтобы та в свою очередь вызвала
+    из-за этой особенности многим трудно понимать код на JS:
+    код выполняется не сверху вниз а фиг пойми как
+    например на слайде нижнее сообщение выполнится первым
+    это сделано не просто так а ради неблокирующих операций IO
+    асинхронность в JS это сила а не слабость, но за всё надо платить
+    но какой код мы напишем если после первой операции
+    нам нужно будет сделать еще одну асинхронную и вывести результат?
+    -->
+		<h2>Асинхронность в JavaScript</h2>
+		<pre class="hljs js">
+		<code>http.get('/user', function (err, user) {</code>
+		<code>    if (err) {</code>
+		<code>        console.error(err);</code>
+		<code>        return;</code>
+		<code>    }</code>
+		<code>    console.log('User is', user);</code>
+		<code>});</code>
+		<code> </code>
+		<code>console.log('Waiting...');</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<!--
+    скорей всего мы просто добавим её вызов в наш callback
+    финальный console.log вынесем в новый callback
+    а что если нам нужен еще один вызов? или if вставить?
+    -->
+		<h2>Callback Hell</h2>
+		<pre class="hljs js">
+		<code>http.post('/signup', user, function (err, resp1) {</code>
+		<code>    if (err) { return console.error(err); }</code>
+		<code>    http.get(`/users/${resp1.id}`, function (err, resp2) {</code>
+		<code>        if (err) { return console.error(err); }</code>
+		<code>        http.get(`/photos/${resp2.avatarId}`, function (err, avatar) {</code>
+		<code>            if (err) { return console.error(err); }</code>
+		<code>            // ... callback hell!</code>
+		<code>        });</code>
+		<code>    });</code>
+		<code>});</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Избавляемся от пирамид</h2>
+		<!--
+    как только мы осознали что пирамиды это плохо
+    хочется от них избавиться
+    сделать это можно например так:
+    выносим колбеки как отдельные функции
+    придумываем адекватные названия
+    расположить их при этом можно в порядке выполненения (JS это позволяет)
+    или по старинке следуя правилу "не использовать до объявления"
+    пирамид больше нет но callback-и остались
+    -->
+		<pre class="hljs js">
+		<code>http.post('/signup', user, <mark>onSignup</mark>);</code>
+		<code> </code>
+		<code>function onSignup (err, resp1) {</code>
+		<code>    if (err) { return console.error(err); }</code>
+		<code>    http.get(`/users/${resp1.id}`, <mark>onLoadUser</mark>);</code>
+		<code>}</code>
+		<code> </code>
+		<code>function onLoadUser (err, resp2) {</code>
+		<code>    if (err) { return console.error(err); }</code>
+		<code>    http.get(`/photos/${resp2.avatarId}`, <mark>onLoadAvatar</mark>);</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Try, catch</h2>
+		<p class="medium-content"></p>
+		<pre class="hljs js">
+		<code>try {</code>
+		<code>    // Выбрасываем исключение вручную</code>
+  		<code>    throw 'Ooops!';</code>
+		<code>} catch (err) {</code>
+		<code>    alert(err); // Привет, я ошибка!</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Асинхронные ошибки</h2>
+		<pre class="hljs js">
+		<code>try {</code>
+		<code>    http.get('/user', function (err) {</code>
+		<code>        if (err) {</code>
+		<code>            throw err;</code>
+		<code>        }</code>
+		<code>        console.log('User is', user);</code>
+		<code>    });</code>
+		<code>} catch (err) {</code>
+		<code>    alert(err); // Не выполнится</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Асинхронные ошибки</h2>
+		<pre class="hljs js">
+		<code>const callback = function (err) {</code>
+		<code>    if (err) {</code>
+		<code>        throw err;</code>
+		<code>    }</code>
+		<code>    console.log('User is', user);</code>
+		<code>};</code>
+		<code> </code>
+		<code>try {</code>
+		<code>    http.get('/user', callback);</code>
+		<code>} catch (err) {</code>
+		<code>    alert(err); // Не выполнится</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<!--
+    рассказ про то когда и зачем придумали Promise
+    -->
+		<h2>Futures или Promises</h2>
+		<p class="small-content">Термин <mark>promise</mark> был предложен в 1976 году Дэниэлом Фридманом и Дэвидом Вайзом,
+			а Питер Хиббард назвал его <mark>eventual</mark>. Похожая концепция под названием <mark>future</mark> была
+			предложена в 1977 году в статье Генри Бейкера и Карла Хьюитта</p>
+	</section>
+
+
+	<section class="slide">
+		<h2>Promise</h2>
+		<blockquote>
+			<p><b>Promise (обещание)</b> &mdash; представляет собой обертку для значения, неизвестного на момент создания
+				обещания</p>
+		</blockquote>
+		<p class="note">Он позволяет обрабатывать результаты асинхронных операций так, как если бы они были синхронными:
+			вместо конечного результата асинхронного метода возвращается обещание получить результат в некоторый момент в
+			будущем</p>
+	</section>
+
+	<section class="slide">
+		<h2>Promise</h2>
+		<blockquote>
+			<p><b>Promises (промисы)</b> &mdash; это специальные объекты, которые могут находиться в одном из трёх состояний:
+				<ul>
+					<li>вначале <strong>pending</strong> («ожидание»)</li>
+					<li>затем либо <strong>fulfilled</strong> («выполнено успешно»)</li>
+					<li>либо <strong>rejected</strong> («выполнено с ошибкой»)</li>
+				</ul>
+			</p>
+		</blockquote>
+		<div style="position:relative;width: 100%; height: 40%;">
+			<img class="place" src="promiseInit.png"
+				style="transform-origin: center;transform: translate(-50%,-50%) scale(1.6);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Promise</h2>
+		<pre class="hljs js">
+		<code>const promise = new Promise(function(resolve, reject) {</code>
+		<code>    // Здесь можно выполнять любые действия</code>
+		<code> </code>
+		<code>    // вызов resolve(result) переведёт промис в состояние <mark>fulfilled</mark></code>
+		<code>    // вызов reject(error) переведёт промис в состояние <mark>rejected</mark></code>
+		<code>});</code>
+		<code> </code>
+		<code>// Можно создать сразу "готовый" промис</code>
+		<code>const fulfilled = Promise.resolve(result);</code>
+		<code>// const fulfilled = new Promise((resolve, _) => resolve(result));</code>
+		<code>const rejected = Promise.reject(error);</code>
+		<code>// const rejected = new Promise((_, reject) => reject(error));</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Promise</h2>
+		<p>Основной способ взаимодействия с промисом это регистрация функций обратного вызова для получения конечного
+			результата промиса или сообщения о причине, по которой он не был выполнен. Иными словами, на промисы можно
+			навесить два коллбека:</p>
+		<ul>
+			<li><code>onFulfilled</code> &mdash; срабатывают, когда promise находится в состоянии «выполнен успешно»</li>
+			<li><code>onRejected</code> &mdash; срабатывают, когда promise находится в состоянии «выполнен с ошибкой»</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Promise</h2>
+		<pre class="hljs js">
+		<code>const promise = new Promise( ... );</code>
+		<code> </code>
+		<code>// Можно навесить их одновременно</code>
+		<code>promise.then(onFulfilled, onRejected);</code>
+		<code> </code>
+		<code>// Можно по отдельности</code>
+		<code>// Только обработчик onFulfilled</code>
+		<code>promise.then(onFulfilled);</code>
+		<code>// Только обработчик onRejected</code>
+		<code>promise.then(null, onRejected);</code>
+		<code>promise.catch(onRejected); // Или так</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Promise</h2>
+		<pre class="hljs js">
+		<code>const promise = new Promise(function(resolve, reject) {</code>
+		<code>    // do smth</code>
+		<code>    resolve('success'); // or</code>
+		<code>    // reject(new Error('failure'));</code>
+		<code>});</code>
+		<code> </code>
+		<code>promise</code>
+		<code>    <mark>.then</mark>(res => console.log(res))</code>
+		<code>    <mark>.catch</mark>(err => console.error(err));</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<!--
+    Этот небольшой трюк дарит нам много возможностей
+    для организации нашего асинхронного кода
+    Перечисляю и рассказываю первые три пункта, на последнем скипаю к след слайду
+    -->
+		<h2>Какая польза от промисов?</h2>
+		<p class="small-content"></p>
+		<ul>
+			<li>Можно навешивать несколько обработчиков-колбэков</li>
+			<li>Можно навесить обработчик-колбэк потом</li>
+			<li>Можно передавать промисы в качестве аргументов в другие части системы</li>
+			<li>Можно строить цепочки асинхронных вызовов без callback hell</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Добавление нескольких коллбэков</h2>
+		<pre class="hljs js">
+		<code>// 'cb1 success', 'cb2 success'</code>
+		<code>const promise = Promise.resolve('success');</code>
+		<code> </code>
+		<code>promise.then(res => { console.log('cb1', res); }); // 1</code>
+		<code>promise.then(res => { console.log('cb2', res); }); // 2</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Чейнинг промисов</h2>
+		<pre class="hljs js">
+		<code>// 'value 1', 'value 2', 'value 3'</code>
+		<code>const promise = Promise.resolve('value 1');</code>
+		<code> </code>
+		<code>const p2 = promise</code>
+		<code>    .then(res => { console.log(res); return 'value 2'; }) // 1</code>
+		<code>    .then(res => { console.log(res); return 'value 3'; }) // 2</code>
+		<code>    .then(res => { console.log(res); });                  // 3</code>
+		<code> </code>
+		<code>p2 === promise // false</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Обработка асинхронных ошибок</h2>
+		<pre class="hljs js">
+		<code>// 'value 1', 'Error!', 'Error catched!'</code>
+		<code>const promise = Promise.resolve('value 1');</code>
+		<code> </code>
+		<code>promise</code>
+		<code>    .then(res => { console.log(res); throw 'Error!'; })             // 1</code>
+		<code>    .then(res => { console.log('foo'); })</code>
+		<code>    .then(res => { console.log('bar'); })</code>
+		<code>    .then(res => { console.log('baz'); })</code>
+		<code>    .catch(err => { console.error(err); return 'Error catched!'; }) // 2</code>
+		<code>    .then(res => { console.log(res); });                            // 3</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Из промиса можно возвращать<br />промис!</h2>
+		<pre class="hljs js">
+		<code>// 'foo', 'baz', 'bar', 'foobar'</code>
+		<code>const promise1 = Promise.resolve('foo')</code>
+		<code>    .then(res => { console.log(res); return 'bar'; });    // foo</code>
+		<code> </code>
+		<code>const promise2 = Promise.resolve('baz')</code>
+		<code>    .then(res => { console.log(res); <mark>return promise1</mark>; })  // baz</code>
+		<code>    .then(res => { console.log(res); return 'foobar'; })  // bar</code>
+		<code>    .then(res => { console.log(res); });                  // foobar</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Промисификация</h2>
+		<blockquote>
+			<p>Оборачивание <strong>асинхронного функционала</strong> в функцию, возвращающую промис</p>
+		</blockquote>
+		<pre class="hljs js">
+		<code>function PromiseGet(url) {</code>
+		<code>    return new Promise(function (resolve, reject) {</code>
+		<code>        http.Get(url, function (err, response) {</code>
+		<code>            if (err) { reject(err) }</code>
+		<code>            resolve(response);</code>
+		<code>        });</code>
+		<code>    });</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Callback Hell!</h2>
+		<pre class="hljs js">
+		<code>http.post('/signup', user, function (err, resp1) {</code>
+		<code>    if (err) { return console.error(err); }</code>
+		<code>    http.get(`/users/${resp1.id}`, function (err, resp2) {</code>
+		<code>        if (err) { return console.error(err); }</code>
+		<code>        http.get(`/photos/${resp2.avatarId}`, function (err, avatar) {</code>
+		<code>            if (err) { return console.error(err); }</code>
+		<code>            // ... callback hell!</code>
+		<code>        });</code>
+		<code>    });</code>
+		<code>});</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2><s>Callback Hell!</s> Красота :)</h2>
+		<pre class="hljs js">
+		<code>PromisePost('/signup', user)</code>
+		<code>    .then(resp1 => PromiseGet(`/users/${resp1.id}`))</code>
+		<code>    .then(resp2 => PromiseGet(`/photos/${resp2.avatarId}`))</code>
+		<code>    .then(avatar => { ... })</code>
+		<code>    .catch(err => console.error(err));</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>Promise.all</code></h2>
+		<pre class="hljs js">
+		<code>// Делаем что-нибудь асинхронное и важное параллельно</code>
+		<code>Promise.all([</code>
+		<code>	  PromiseGet('/user/1'),</code>
+		<code>	  PromiseGet('/user/2'),</code>
+		<code>]).then(function(users) {</code>
+		<code>	  // Результатом станет массив из значений всех промисов</code>
+		<code>	  users.forEach(function(user, i) {</code>
+		<code>	  	  console.log(`User #${i}: ${value}`);</code>
+		<code>	  });</code>
+		<code>});</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>Promise.race</code></h2>
+		<pre class="hljs js">
+		<code>// Делаем что-нибудь асинхронное и важное наперегонки!</code>
+		<code>Promise.race([</code>
+		<code>	  promiseSomething(),</code>
+		<code>	  promiseSomethingElse()</code>
+		<code>]).then(function(result) {</code>
+		<code>	  // Результатом станет значение самого "быстрого" промиса</code>
+		<code>	  console.log(`Result: ${value}`);</code>
+		<code>});</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>Async/await</code></h2>
+		<blockquote>
+			<p>«async/await» - Специальный синтаксис для работы с промисами</p>
+		</blockquote>
+		<pre class="hljs js">
+		<code>// Синтаксический сахар</code>
+		<code>async function f() {</code>
+		<code>  return 1; // return Promise.resolve(1);</code>
+		<code>}</code>
+		<code>f().then(alert); // 1</code>
+		<code> </code>
+	</pre>
+	</section>
+
+
+
+	<section class="slide">
+		<h2><code>Async/await</code></h2>
+		<blockquote>
+			<p> Можно использовать только в асинхронных функциях</p>
+		</blockquote>
+		<pre class="hljs js">
+		<code>async function f() {</code>
+
+		<code>	let promise = new Promise((resolve, reject) => {</code>
+		<code>		setTimeout(() => resolve("готово!"), 1000)</code>
+		<code>	});</code>
+		<code> </code>
+		<code>	let result = await promise; // будет ждать, пока промис не выполнится </code>
+		<code> </code>
+		<code>	alert(result); // "готово!"</code>
+		<code>}</code>
+		<code>f();</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Fetch API</h2>
+		<blockquote>
+			<p>
+				Метод <mark>fetch</mark> &mdash; это <mark>XMLHttpRequest</mark> нового поколения.
+				Он предоставляет улучшенный интерфейс для осуществления запросов к серверу:
+				как по части возможностей и контроля над происходящим,
+				так и по синтаксису, так как построен на <b>промисах</b>
+			</p>
+		</blockquote>
+		<pre class="hljs js">
+		<code>// Синтаксис метода fetch:</code>
+		<code>const fetchPromise = fetch(url[, options]);</code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Fetch API options</h2>
+		<ul>
+			<li><code>method</code> &mdash; метод запроса</li>
+			<li><code>headers</code> &mdash; заголовки запроса (объект)</li>
+			<li><code>body</code> &mdash; тело запроса: <code>FormData</code>, <code>Blob</code>, строка и т.п.</li>
+			<li><code>mode</code> &mdash; одно из: «same-origin», «no-cors», «cors», указывает, в каком режиме
+				кросс-доменности предполагается делать запрос</li>
+			<li><code>credentials</code> &mdash; одно из: «omit», «same-origin», «include», указывает, пересылать ли куки и
+				заголовки авторизации вместе с запросом</li>
+			<li><code>cache</code> &mdash; одно из «default», «no-store», «reload», «no-cache», «force-cache»,
+				«only-if-cached», указывает, как кешировать запрос</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Fetch API</h2>
+		<pre class="hljs js">
+		<code>fetch('/server', {</code>
+		<code>	method: 'POST',</code>
+		<code>	credentials: 'include',</code>
+		<code>	data: JSON.stringify({</code>
+		<code>		key: 'value',</code>
+		<code>	})</code>
+		<code>});</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Жизненный цикл</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Внутреннее состояние</h2>
+		<p>Объект state описывает внутреннее состояние компонента, он похож на props за тем исключением, что состояние
+			определяется внутри компонента и доступно только из компонента. Если props представляет входные данные, которые
+			передаются в компонент извне, то состояние хранит такие объекты, которые создаются в компоненте и полностью
+			зависят от компонента.
+		</p>
+		<ul>
+			<li><code>this.setState()</code> &mdash; асинхронная функция, в которую передается объект с новыми значениями
+				состояния</li>
+			<!-- <li><code>this.setState()</code> &mdash; асинхронная функция, в которую передается объект с новыми значениями
+				состояния</li> -->
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Методы жизненного цикла</h2>
+		<p>React предоставляет разработчикам множество методов и «хуков», которые вызываются во время жизненного цикла
+			компонента, они позволяют нам обновлять UI и состояние приложения.
+		</p>
+		<ul>
+			<li><code>componentDidMount()</code></li>
+			<li><code>componentDidUpdate(prevProps, prevState)</code></li>
+			<li><code>componentWillUnmount()</code></li>
+			<li><code>shouldComponentUpdate(nextProps, nextState)</code></li>
+			<li><code>static getDerivedStateFromProps(props, state)</code></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Методы жизненного цикла</h2>
+		<div style="position:relative;width: 100%; height: 100%;">
+			<img class="place" src="lifecycle.png"
+				style="transform-origin: center;transform: translate(-50%,-55%) scale(0.43);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>componentDidMount()</h2>
+		</p>
+		<ul>
+			<mark>ДЕЛАЙТЕ:</mark>
+			<li>Выполняйте сайд-эффекты (Запросы к серверу и т.д.)</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>componentDidUpdate(prevProps, prevState)</h2>
+		</p>
+		<ul>
+			<mark>ДЕЛАЙТЕ:</mark>
+			<li>Выполняйте сайд-эффекты (Запросы к серверу и т.д.)</li>
+			<br>
+			<mark>НЕ ДЕЛАЙТЕ:</mark>
+			<li>Не вызывайте this.setState т.к. это может вызвать циклическую перерисовку.</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>componentWillUnmount()</h2>
+		</p>
+		<ul>
+			<mark>ДЕЛАЙТЕ:</mark>
+			<li>Удаляйте таймеры и слушателей (listeners) созданных во время жизни компонента.</li>
+			<br>
+			<mark>НЕ ДЕЛАЙТЕ:</mark>
+			<li>Не вызывайте this.setState, не стартуйте новых слушателей или таймеры.</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>shouldComponentUpdate(nextProps, nextState)</h2>
+		</p>
+		<ul>
+			<mark>ДЕЛАЙТЕ:</mark>
+			<li>Используйте для оптимизации производительности компонента</li>
+			<br>
+			<mark>НЕ ДЕЛАЙТЕ:</mark>
+			<li>Не выполняйте никаких сайд-эффектов (Вызовы AJAX и т.д.)</li>
+			<li>Не вызывайте this.setState</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>static getDerivedStateFromProps(props, state)</h2>
+		</p>
+		<ul>
+			<mark>ДЕЛАЙТЕ:</mark>
+			<li>Этот метод существует для редких случаев, когда состояние зависит от изменений в пропсах.</li>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">React Router</h2>
+	</section>
+
+
+	<section class="slide">
+		<h2 class="shout">Всем спасибо!</h2>
+	</section>
+
+	<div class="progress"></div>
+	<script src="/lib/shower/shower.min.js"></script>
+	<script src="/lib/hljs/highlight.pack.js"></script>
+	<script>
+		hljs.initHighlightingOnLoad();
+	</script>
+</body>
+
+</html>
