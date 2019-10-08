@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Введение во Frontend</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="icon" type="image/png" href="/lib/favicon.png" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/lib/shower/themes/styles/screen-4x3.css">
+	<link rel="stylesheet" href="/lib/slides.css">
+
+</head>
+
+<body class="shower list">
+
+	<header class="caption">
+		<h1>Full-stack разработка</h1>
+		<p>МФТИ</p>
+	</header>
+
+	<section class="slide first">
+		<h2 class="shout">Семинар №5<br />
+			<small>Слайды доступны по ссылке<br />
+				<a href="https://mfti-frontend.herokuapp.com/">mfti-frontend.herokuapp.com</a>
+			</small>
+		</h2>
+	</section>
+
+	<section class="slide question">
+		<h2 style="text-align: center; padding: 0"><span style="font-size: 100%">TypeScript</span></h2>
+	</section>
+
+	<section class="slide">
+		<h2>TypeScript</h2>
+		<p class="medium-content"></p>
+		<blockquote>
+			<p><b>TypeScript</b> &mdash; язык программирования, представленный Microsoft в 2012 году. TypeScript является
+				<mark><strong>обратно совместимым</strong> с JavaScript и компилируется в последний</mark>. TypeScript
+				отличается от JavaScript возможностью
+				<mark>явного статического назначения типов</mark>, а также поддержкой <mark>подключения модулей</mark>
+			</p>
+		</blockquote>
+		<p>Разработчиком языка TypeScript является <b>Андерс Хейлсберг</b> (англ. Anders Hejlsberg), создавший ранее
+			<mark>Turbo Pascal</mark>, <mark>Delphi</mark> и <mark>C#</mark>.</p>
+		<p class="note"><a href="https://basarat.gitbooks.io/typescript/" target="_blank">TypeScript Deep Dive</a> &mdash;
+			крутая книга по TypeScript</p>
+	</section>
+
+	<section class="slide">
+		<h2>Преимущества TypeScript</h2>
+		<ul lang="ru">
+			<li>Аннотации типов и проверка их согласования на этапе компиляции</li>
+			<li>Интерфейсы, кортежи, декораторы свойств и методов, расширенные возможности ООП</li>
+			<li>TypeScript &mdash; <strong>надмножество JavaScript</strong>, поэтому любой код на JavaScript будет выполнен и
+				в TypeScript</li>
+			<li>Широкая поддержка IDE и адекватный автокомплит</li>
+			<li>Поддержка ES6-модулей из коробки</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Переписываем проект на TS</h2>
+		<p class="small-content"></p>
+		<ol lang="ru">
+			<li>Переименовываем <code>*.js</code> в <code>*.ts</code></li>
+			<li>???????</li>
+			<li>PROFIT</li>
+		</ol>
+	</section>
+
+	<section class="slide">
+		<h2>Установка и использование</h2>
+		<pre class="hljs bash">
+			<code># установка компилятора</code>
+			<code>$ npm install -g typescript</code>
+			<code> </code>
+			<code># компиляция файла</code>
+			<code>$ tsc helloworld.ts</code>
+			<code> </code>
+			<code># утилита позволяет компилировать и сразу запускать .ts файлы</code>
+			<code>$ npm install -g ts-node</code>
+			<code>$ ts-node script.ts</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Файл <code>tsconfig.json</code></h2>
+		<pre class="hljs json">
+			<code>{</code>
+			<code>    "compilerOptions": {</code>
+			<code>        "outDir": "cache/",</code>
+			<code>        <mark>"target"</mark>: "es2016",</code>
+			<code>        "declaration": false,</code>
+			<code>        "module": "commonjs",</code>
+			<code>        "strictNullChecks": true,</code>
+			<code>        "sourceMap": true</code>
+			<code>        ...</code>
+			<code>     }</code>
+			<code>}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+
+	<section class="slide">
+		<h2>Аннотации типов</h2>
+		<pre class="hljs ts">
+			<code>const valid: boolean = true;</code>
+			<code>const count: number = 42;</code>
+			<code>const man: string = 'Jon Snow';</code>
+			<code> </code>
+			<code>console.log(man * 2);</code>
+			<code>// Error: The left-hand side of an arithmetic</code>
+			<code>// operation must be of type 'any', 'number' or an enum type</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Type Inference</h2>
+		<blockquote>
+			<p><b>Вывод типов</b> (англ. type inference) &mdash; в программировании возможность компилятора
+				самому логически вывести тип значения у выражения.
+			</p>
+		</blockquote>
+		<pre class="hljs ts">
+			<code>const valid = true;</code>
+			<code>const count = 42;</code>
+			<code>const man = 'Jon Snow';</code>
+			<code> </code>
+			<code>console.log(man * 2);</code>
+			<code>// Error: The left-hand side of an arithmetic</code>
+			<code>// operation must be of type 'any', 'number' or an enum type</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Аннотации типов</h2>
+		<pre class="hljs ts">
+			<code>const valid = true;</code>
+			<code>const count = 42;</code>
+			<code>const man: any = 'Jon Snow';</code>
+			<code> </code>
+			<code>console.log(man * 2); //NaN</code>
+			<code>// Зато нет TS ошибок!</code>
+			<code>// Profit!</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Аннотации типов</h2>
+		<pre class="hljs ts">
+			<code>const valid = true;</code>
+			<code>const count = 42;</code>
+			<code>const name = 'Jon Snow';</code>
+			<code> </code>
+			<code>const values: number[] = [1, 2, 3, 4, 5];</code>
+			<code>const tuple: [string, number] = ['Mean of life', 42];</code>
+			<code> </code>
+			<code>enum Color {Red, Green, Blue};</code>
+			<code>const c: Color = Color.Green;</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Аннотации типов</h2>
+		<pre class="hljs ts">
+			<code>let some: any = true; some = 42;</code>
+			<code>some = 'maybe a string instead'; // типы не проверяются</code>
+			<code>// приведение типов (“trust me, I know what I’m doing”)</code>
+			<code>let length: number = (&lt;string>some).length;</code>
+			<code>length = (some as string).length;</code>
+			<code> </code>
+			<code>let unusable: void = undefined;</code>
+			<code>let u: undefined = undefined;</code>
+			<code>let n: null = null;</code>
+			<code> </code>
+		</pre>
+	</section>
+
+
+	<section class="slide">
+		<h2>Функции в TypeScript</h2>
+		<pre class="hljs ts">
+			<code>function sum(x: number, y: number): number {</code>
+			<code>    return x + y;</code>
+			<code>}</code>
+			<code> </code>
+			<code>const many: number = sum(40, 2);</code>
+			<code> </code>
+			<code>const gcd = (a: number, b: number): number =></code>
+			<code>    (b === 0) ? a : gcd(b, a % b);</code>
+			<code> </code>
+			<code>console.log(gcd(48, 30)); // 6</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Функции в TypeScript</h2>
+		<pre class="hljs ts">
+			<code>function sum(x: number, <mark>y?: number</mark>): number {</code>
+			<code>    if (y) {</code>
+			<code>        return x + y;</code>
+			<code>    } else {</code>
+			<code>        return x;</code>
+			<code>    }</code>
+			<code>}</code>
+			<code> </code>
+			<code>console.log(sum(34, 8));  // 42</code>
+			<code>console.log(sum(42));     // OK! - 42</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Функции в TypeScript</h2>
+		<pre class="hljs ts">
+			<code>function sum(x: number, <mark>y: number = 42</mark>): number {</code>
+			<code>    return x + y;</code>
+			<code>}</code>
+			<code> </code>
+			<code>console.log(sum(34, 8));  // 42</code>
+			<code>console.log(sum(42));     // OK! - 84</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Функции в TypeScript</h2>
+		<pre class="hljs ts">
+			<code>function sum(...numbers: number[]): number {</code>
+			<code>    return numbers.reduce((sum: number, current: number): number => {</code>
+			<code>        sum += current; return sum;</code>
+			<code>    }, 0);</code>
+			<code>}</code>
+			<code> </code>
+			<code>console.log(sum(1, 2, 3, 4, 5));     // 15</code>
+			<code>console.log(sum(42, 0, -10, 5, 5));  // 42</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Функции в TypeScript</h2>
+		<pre class="hljs ts">
+			<code>function square(num: number): number;</code>
+			<code>function square(num: string): number;</code>
+			<code>function square(num: any): number {</code>
+			<code>    if (typeof num === 'string') {</code>
+			<code>        return parseInt(num, 10) * parseInt(num, 10);</code>
+			<code>    } else {</code>
+			<code>        return num * num;</code>
+			<code>    }</code>
+			<code>}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Функции в TypeScript</h2>
+		<pre class="hljs ts">
+			<code>function square(num: string | number): number {</code>
+			<code>    if (typeof num === 'string') {</code>
+			<code>        return parseInt(num, 10) * parseInt(num, 10);</code>
+			<code>    } else {</code>
+			<code>        return num * num;</code>
+			<code>    }</code>
+			<code>}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+
+	<section class="slide">
+		<h2>Интерфейсы</h2>
+		<pre class="hljs ts">
+			<code>interface Figure {</code>
+			<code>    width: number;</code>
+			<code>    readonly height: number;</code>
+			<code>}</code>
+			<code> </code>
+			<code>const square: Figure = {width: 42, height: 42};</code>
+			<code>square.width = 15;    // OK</code>
+			<code>square.height = 15;   // Cannot assign to read-only property</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Интерфейсы</h2>
+		<pre class="hljs ts">
+			<code>interface Figure {</code>
+			<code>    width: number;</code>
+			<code>    height: number;</code>
+			<code>}</code>
+			<code>interface Square extends Figure {</code>
+			<code>    square: () => number;</code>
+			<code>}</code>
+			<code>const sq = {width: 15, height: 20, </code>
+			<code>    square() { return this.width * this.height; } };</code>
+			<code>sq.square();    // 300</code>
+			<code> </code>
+		</pre>
+	</section>
+
+
+	<section class="slide">
+		<h2>Классы в TypeScript</h2>
+		<pre class="hljs ts">
+			<code><mark>abstract</mark> class Class1 {</code>
+			<code>    abstract func1(): void;  <span
+					class="comment rus">// необходимо определить в наследниках</code>
+			<code>}</code>
+			<code>class Class2 extends Class1 {</code>
+			<code>    static <mark>readonly</mark> field3: string = 'hello';</code>
+			<code>    <mark>protected</mark> name: string;</code>
+			<code>    <mark>private</mark> field1: number;</code>
+			<code>    constructor() { super(); }</code>
+			<code>    public func1(): void { ... }</code>
+			<code>}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Классы в TypeScript</h2>
+		<pre class="hljs ts">
+			<code>interface Squarable {</code>
+			<code>	calcSomething(): number;</code>
+			<code>}</code>
+			<code> </code>
+			<code>class Square implements Squarable {</code>
+			<code>	width: number;</code>
+			<code>	height: number;</code>
+			<code> </code>
+			<code>	// Error: Class 'Square' incorrectly implements interface 'Squarable'.</code>
+			<code>	// Property 'calcSomething' is missing in type 'Square'.</code>
+			<code>}</code>
+	
+		</pre>
+	</section>
+
+
+	<section class="slide">
+		<h2>Generics</h2>
+		<pre class="hljs ts">
+			<code>class Queue&lt;T> {</code>
+			<code>    private data = [];</code>
+			<code>    push = (item: T) => this.data.push(item);</code>
+			<code>    pop = (): T => this.data.shift();</code>
+			<code>}</code>
+			<code> </code>
+			<code>const queue = new Queue&lt;number>();</code>
+			<code>queue.push(0);    // OK</code>
+			<code>queue.push('1');  // Error: cannot push a string</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Generics</h2>
+		<pre class="hljs ts">
+			<code>function makeKeyValue&lt;K, V>(key: K, value: V): { key: K; value: V } {</code>
+			<code>    return {key, value};</code>
+			<code>}</code>
+			<code> </code>
+			<code>const pair = makeKeyValue('days', ['ПН', 'ВТ']);</code>
+			<code>pair.value.push('СР', 'ЧТ', 'ПТ', 'СБ', 'ВС');  // OK</code>
+			<code>pair.value.push(42);   // Error: cannot push a number</code>
+			<code> </code>
+		</pre>
+	</section>
+
+
+	<section class="slide">
+		<h2>Декораторы свойств и методов</h2>
+		<pre class="hljs ts">
+			<code>class Utils {</code>
+			<code>    <mark>@memoize</mark></code>
+			<code>    static fibonacci (n: number): number {</code>
+			<code>        return n < 2 ? 1 : Utils.fibonacci(n - 1) + Utils.fibonacci(n - 2)</code>
+			<code>    }</code>
+			<code>}</code>
+			<code>console.time('count');</code>
+			<code>console.log(Utils.fibonacci(50));</code>
+			<code>console.timeEnd('count');     // оооочень долго</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Декораторы свойств и методов</h2>
+		<pre class="hljs ts">
+			<code>function memoize (target, key, descriptor) {</code>
+			<code>    const originalMethod = descriptor.value;</code>
+			<code>    const cash = {};</code>
+			<code>    descriptor.value = function (n: number): number {</code>
+			<code>        return cash[n] ? cash[n] : cash[n] = originalMethod(n);</code>
+			<code>    }</code>
+			<code>}</code>
+			<code>console.log(Utils.fibonacci(1000));   <span
+					class="comment rus">// 7.0330367711422765e+208</code>
+			<code>console.timeEnd('count');             // count: 5.668ms</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide question">
+		<h2 style="text-align: center; padding: 0"><span style="font-size: 70%">Как "типизировать" js-код?</span></h2>
+	</section>
+
+	<section class="slide">
+		<h2>TypeScript Declaration Files</h2>
+		<blockquote>
+			<p class="small-content"><b>TypeScript Declaration Files (<code>.d.ts</code>)</b> &mdash; служат для описания
+				интерфейсов, экспортируемых классов и методов для модулей, написанных на обычном JavaScript</p>
+		</blockquote>
+	</section>
+
+	<section class="slide">
+		<h2><code>.d.ts</code> файлы</h2>
+		<pre class="hljs ts">
+			<code>interface JQueryStatic {</code>
+			<code>    ajax(settings: JQueryAjaxSettings): JQueryXHR;</code>
+			<code>    (element: Element): JQuery;</code>
+			<code>    (html: string, ownerDocument?: Document): JQuery;</code>
+			<code>    (): JQuery;</code>
+			<code>}</code>
+			<code> </code>
+			<code>declare var $: JQueryStatic;</code>
+			<code>declare module 'jquery' {</code>
+			<code>    export = $;</code>
+			<code>}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Типизация с помощью <code>JSDoc</code></h2>
+		<pre class="hljs ts">
+			<code>// Пример типизирования функции с помощью JSDoc + TypeScript</code>
+			<code>/**</code>
+			<code> * @param p0 {string} - Строковый аргумент объявленный на манер TS</code>
+			<code> * @param {string}  p1 - Строковый аргумент</code>
+			<code> * @param {string=} p2 - Опциональный аргумент</code>
+			<code> * @param {string} [p3] - Другой опциональный аргумент</code>
+			<code> * @param {string} [p4="test"] - Аргумент со значением по-умолчанию</code>
+			<code> * @return {string} Возвращает строку</code>
+			<code> */</code>
+			<code>function fn3(p0, p1, p2, p3, p4){</code>
+			<code>  // TODO</code>
+			<code>}</code>
+			</pre>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Всем спасибо!</h2>
+	</section>
+
+	<div class="progress"></div>
+	<script src="/lib/shower/shower.min.js"></script>
+	<script src="/lib/hljs/highlight.pack.js"></script>
+	<script>
+		hljs.initHighlightingOnLoad();
+	</script>
+</body>
+
+</html>
