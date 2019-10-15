@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Введение во Frontend</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="icon" type="image/png" href="/lib/favicon.png" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/lib/shower/themes/styles/screen-4x3.css">
+	<link rel="stylesheet" href="/lib/slides.css">
+
+</head>
+
+<body class="shower list">
+
+	<header class="caption">
+		<h1>Full-stack разработка</h1>
+		<p>МФТИ</p>
+	</header>
+
+	<section class="slide first">
+		<h2 class="shout">Семинар №6<br />
+			<small>Слайды доступны по ссылке<br />
+				<a href="https://mfti-frontend.herokuapp.com/">mfti-frontend.herokuapp.com</a>
+			</small>
+		</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Требования к проекту</h2>
+
+		<ul lang="ru">
+			<li>Наличие нескольких страниц (не менее двух)</li>
+			<li>React, компонентный подход (не писать все в одном файле, это касается и js и css)</li>
+			<li>Сохранение данных между сессиями</li>
+			<li>Использование redux для хранения состояния</li>
+			<li>Корректно работающая авторизация</li>
+			<li>Использование современных стандартов языка</li>
+			<li>Использование современных стандартов языка (с var-ами не приму)</li>
+			<li>Отсутствие больщих и бесполезных библиотек (jQuery и тд)</li>
+			<li>Задеплоен в интернет (heroku, now или что посложнее)</li>
+		</ul>
+	</section>
+
+
+	<section class="slide question">
+		<h2>Хранение данных на клиенте</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Как сохранить что-то в браузере <br>пользователя?</h2>
+		<p>Все данные, которые используются web-приложением, существуют <strong>только пока открыта вкладка
+				браузера</strong>. Однако, существуют способы сохранить какие-то данные в браузере и воспользоваться ими потом:
+		</p>
+		<ul lang="ru">
+			<li><mark>Кэш браузера</mark> &mdash; сохраняет только ответы на запросы, сложно управлять</li>
+			<li><mark>cookies</mark> &mdash; исторически первый способ сохранения информации между сессиями работы с сайтом,
+				но имеют слишком маленький размер</li>
+			<li><mark>Web Storage API</mark> &mdash; механизм для сохранения key/value значений с возможностью программного
+				управления данными</li>
+			<li>WebSQL/IndexedDB &mdash; <strong>базы данных</strong> в браузере</li>
+			<li>FileSystem API &mdash; интерфейс для работы <strong>с файловой системой</strong></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Web Storage API</h2>
+		<blockquote>
+			<p><strong>Web Storage API</strong> &mdash; механизм для сохранения key/value значений с возможностью программного
+				управления данными. Предоставляет два host объекта в браузере пользователя <strong>с возможностью персистентного
+					сохранения данных (до 10 MB на origin)</strong></p>
+		</blockquote>
+		<ul>
+			<li><code>window.sessionStorage</code> &mdash; сохраняет данные пока открыт браузер</li>
+			<li><code>window.localStorage</code> &mdash; сохраняет данные навсегда, пока пользователь вручную не очистит
+				хранилище данных в настройках браузера</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2><code>window.localStorage</code></h2>
+		<pre class="hljs js">
+		<code>// элементами Storage являются <mark>строки</mark></code>
+		<code>localStorage[key];           /* String */</code>
+		<code>localStorage[key] = value;   /* String */</code>
+		<code> </code>
+		<code>// работа с объектами Storage <mark>синхронная</mark></code>
+		<code>localStorage.length</code>
+		<code>localStorage.key(i)          /* String */</code>
+		<code>localStorage.getItem(key)    /* String */</code>
+		<code>localStorage.setItem(key, value)  // может сгенерировать exception,</code>
+		<code>                                  // если нет места</code>
+		<code>localStorage.removeItem(key)</code>
+		<code>localStorage.clear()</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>JSON</h2>
+		<p class="medium-content">Можно написать обёртку, которая позволит сохранять в Storage простые объекты:</p>
+		<pre class="hljs js">
+		<code>function setJSON(key, value) {</code>
+		<code>    localStorage[key] = JSON.stringify(value);</code>
+		<code>}</code>
+		<code>function getJSON(key) {</code>
+		<code>    const value = localStorage[key];</code>
+		<code>    return value ? JSON.parse(value) : null;</code>
+		<code>}</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Событие <code>storage</code></h2>
+		<p>Событие <code>storage</code> происходит при любых изменениях в Storage <strong>в других вкладках с того же
+				origin</strong>. То есть это событие позволяет общаться между вкладками</p>
+		<pre class="hljs js">
+		<code>// обработчик добавляется на объект window</code>
+		<code>window.addEventListener('storage', function (e) {</code>
+		<code>    /* e.key, e.newValue */</code>
+		<code>    ...</code>
+		<code>});</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>WebSQL &mdash; <a href="https://habrahabr.ru/post/84654/" target="_blank">подробнее</a></h2>
+		<p>WebSQL &mdash; <strong>полноценная SQL база данных</strong>, которая позволяет персистентно <strong>хранить
+				данные в браузере пользователя</strong> и работать с ними посредством SQL-запросов. Максимальный размер
+			сохраняемых данных &mdash; 5 MB. <a href="https://caniuse.com/#feat=sql-storage" target="_blank">Поддержка на
+				caniuse</a>.</p>
+		<div style="position: relative; width: 100%; height: 75%; margin: 0 auto;">
+			<img class="place" src="websql-caniuse.png"
+				style="transform-origin: center; transform: translate(-50%,-65%) scale(0.4);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>WebSQL пример</h2>
+		<pre class="hljs js">
+		<code>// создаём объект базы данных <mark>(доступно и в воркерах!)</mark></code>
+		<code>const db = openDatabase('forum', 'v1.0.0', 'Forum', 100000);</code>
+		<code> </code>
+		<code>// создаём транзакцию</code>
+		<code>db.transaction(function(tx) {</code>
+		<code>    tx.executeSql(</code>
+		<code>        'SELECT COUNT(*) FROM `forum`',</code>
+		<code>        [],</code>
+		<code>        function (result) { console.log(result) },</code>
+		<code>        function (tx, error) { /* some error logic */ }</code>
+		<code>    );</code>
+		<code>});</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide">
+		<h2>IndexedDB &mdash; <a href="https://habrahabr.ru/post/213515/" target="_blank">подробнее</a></h2>
+		<p>IndexedDB &mdash; низкоуровневое API для клиентского хранилища большого объема структурированных данных, включая
+			файлы/blobs. Эти API используют индексы для обеспечения высоко-производительного поиска данных. Максимальный
+			размер сохраняемых данных &mdash; 50 MB!!! <a href="https://caniuse.com/#feat=indexeddb" target="_blank">Поддержка
+				на caniuse</a>.</p>
+		<div style="position: relative; width: 100%; height: 75%; margin: 0 auto;">
+			<img class="place" src="indexeddb-caniuse.png"
+				style="transform-origin: center; transform: translate(-50%,-65%) scale(0.4);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>IndexedDB пример</h2>
+		<pre class="hljs js">
+		<code>// открываем базу данных Forum <mark>(доступно и в воркерах!)</mark></code>
+		<code>const request = window.indexedDB.open('Forum', 3);  // 3 - версия бд</code>
+		<code> </code>
+		<code>// обработчик успешного открытия базы данных</code>
+		<code>request.onsuccess = function(event) {</code>
+		<code>    const db = event.target.result;</code>
+		<code>    const store = db.createObjectStore('users', { keyPath: 'userId' });</code>
+		<code> </code>
+		<code>    store.createIndex('age', 'age', { unique: false });</code>
+		<code>    store.createIndex('email', 'email', { unique: true });</code>
+		<code> </code>
+		<code>    store.add({ age: 21, email: 'a.ostapenko@corp.mail.ru' });</code>
+		<code>};</code>
+		<code> </code>
+	</pre>
+	</section>
+
+	<section class="slide first">
+		<h2 class="shout">
+			<small style="font-size:90%">Резюме <strong><em>Frontend-разработчика</em></strong> в 2019 году</small>
+			<br />
+			<small>Слайды доступны по ссылке<br />
+				<a href="https://frontend.tech-mail.ru/">frontend.tech-mail.ru</a>
+			</small>
+		</h2>
+	</section>
+
+	<!--Развитие веба-->
+
+	<section class="slide first">
+		<h2 class="shout">Развитие web-технологий</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Новые WEB API, на которые стоит <br>обратить внимание</h2>
+		<ul>
+			<li><strong>Payment Request API</strong> &mdash; cross-browser standard for Payment transaction process</li>
+			<li><strong>Web Bluetooth API</strong> &mdash; communications over GATT with nearby user-selected Bluetooth
+				devices
+			</li>
+			<li><strong>MediaRecorder API</strong> &mdash; MediaStream Recording</li>
+			<li><strong>WebRTC</strong> &mdash; Real-time Peer-to-peer Communications Between Browsers</li>
+			<li><strong>Credential Management API</strong> &mdash; store and retrieve user, federated , and public key
+				credentials</li>
+			<li><strong>Feature Policy</strong> &mdash; mechanism to allow and deny the use of browser features</li>
+			<li><strong>Trusted-types API🧪</strong> &mdash; allows applications to lock down DOM XSS injection sinks to only
+				accept non-spoofable, typed values in place of strings</li>
+			<li><strong>Page Lifecycle API</strong> &mdash; supports browsers' ability to manage lifecycle of web pages</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Как находить новые API</h2>
+		<ul>
+			<li><a href="https://developers.google.com/web/" target="_blank">https://developers.google.com/web/</a> -
+				официальный сайт Google для web-разработчиков</li>
+			<li><a href="https://github.com/tc39" target="_blank">https://github.com/tc39</a> - комитет, принимающий изменения
+				в Ecma-262</li>
+			<li><a href="https://wicg.io" target="_blank">https://wicg.io</a> - объединение, которое создает и публикует
+				предложения по новым API</li>
+			<li><a href="https://t.me/juliarderity" target="_blank">https://t.me/juliarderity</a> - канал Сергея Рубанова и
+				Романа Дворнова об ECMAScript, WebAssembly, Web APIs, specs</li>
+		</ul>
+	</section>
+
+	<!--Новые навыки и знания-->
+
+	<section class="slide">
+		<h2 class="shout">
+			<small style="font-size: 90%; display: inline-block; line-height: 1;">Как стать профессионалом?</small>
+		</h2>
+	</section>
+
+	<section class="slide question">
+		<h2>Теория</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Теория</h2>
+		<p class="medium-content"></p>
+		<ul>
+			<li>Знать про протоколы WEB'а: HTTP/1 (HTTP/1.1), HTTP/2, HTTP/3, HTTPS, WebSocket</li>
+			<li>Знание JavaScript &mdash; причём, полезно знать как es6+, так и es5. TypeScript</li>
+			<li>Знание возможностей браузеров (HTML5, CSS), уметь в <em>кроссбраузерность</em>, понимать, как браузеры
+				работают <em>внутри</em></li>
+			<li>Вопросы, связанные с безопасностью web-приложений (что такое XSS, как работают cookie, что такое CORS...)</li>
+			<li>Понимать вопросы, связанные с инфраструктурой, деплоем статики</li>
+			<li>Иметь представление о UX</li>
+			<li>Иметь представление о server-side</li>
+			<li>Всё, что связанно с программированием в целом</li>
+		</ul>
+	</section>
+
+	<section class="slide question">
+		<h2>Инструменты</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Инструменты</h2>
+		<p class="medium-content"></p>
+		<ul>
+			<li>Инструменты разработки: Node.js</li>
+			<li>Инструменты сборки: Webpack, grunt, gulp</li>
+			<li>Инструменты работы с CSS: PostCSS</li>
+			<li>Модульные системы: ES6-модули, AMD, UMD, commonjs</li>
+			<li>DevTools браузеров</li>
+		</ul>
+	</section>
+
+	<section class="slide question">
+		<h2>Библиотеки/фреймворки</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Библиотеки/фреймворки</h2>
+		<p class="medium-content"></p>
+		<ul>
+			<li>Библиотеки для сборки
+				<ul lang="en">
+					<li>require.js</li>
+					<li>SystemJS</li>
+				</ul>
+			</li>
+			<li>Фреймворки
+				<ul lang="en">
+					<li>React<sup>*</sup></li>
+					<li>Angular</li>
+					<li>VueJS</li>
+					<li>Prototype</li>
+					<li>Svelte</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+	<section class="slide question">
+		<h2>Новые подходы/концепции</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Новые подходы/концепции</h2>
+		<p class="small-content"></p>
+		<ul>
+			<li>rx.js &mdash; реактивное программирование на js</li>
+			<li>rambda.js &mdash; функциональное программирование на js</li>
+		</ul>
+	</section>
+
+	<section class="slide question">
+		<h2>Как развиваться?</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Как развиваться?</h2>
+		<p class="medium-content"></p>
+		<ul>
+			<li>Много практики &mdash; пробуйте новое, старайтесь развиваться всесторонне</li>
+			<li>Читайте статьи &mdash; например на Habrahabr, Medium, по тегам <code>JavaScript</code>, <code>Frontend</code>
+			</li>
+			<li>Посещайте и смотрите конференции:
+				<ul>
+					<li><a href="https://www.youtube.com/user/wstdays" target="_blank">Веб-стандарты</a></li>
+					<li>Фронтенд-субботники: <a href="https://www.youtube.com/channel/UCMtlICYxr6Dz_PG9_SVqRYQ"
+							target="_blank">тут</a> и <a href="https://www.youtube.com/channel/UCNuItlOR3qXZBtMRwb4GoBg/"
+							target="_blank">тут</a> от Яндекса</li>
+					<li><a href="https://www.youtube.com/channel/UC2Jwo4Q0s-ucjGseHP8XUSQ" target="_blank">HolyJS</a></li>
+					<li><a href="https://www.youtube.com/user/moscowjs" target="_blank">MoscowJS</a></li>
+					<li>Доклады <strong>Вадима Макеева</strong> и <strong>Алексея Охрименко</strong></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+	<section class="slide question">
+		<h2>Как писать резюме?</h2>
+	</section>
+
+	<section class="slide question">
+		<h2><mark>Не пишите</mark> резюме</h2>
+	</section>
+
+	<section class="slide question">
+		<h2>
+			<div style="font-size: 115%; display: inline-block; line-height: 1;"><strong>Верстайте</strong> его!</div>
+			<div style="font-size: 50%; display: inline-block; line-height: 1;">Например &mdash; как <a
+					style="color: darkblue;" href="https://ru.pinterest.com/search/pins/?q=frontend%20developer%20cv"
+					target="_blank">тут</a>, <a style="color: darkblue;" href="https://zabanaa.github.io" target="_blank">живой
+					пример</a></div>
+		</h2>
+	</section>
+
+	<!--Перерыв-->
+
+	<section class="slide">
+		<h2 class="shout">Перерыв</h2>
+	</section>
+
+	<!--Frontend - это не только web-->
+
+	<section class="slide">
+		<h2 class="shout">
+			<small style="font-size: 85%; display: inline-block; line-height: 1;">Frontend-разработка &mdash; это <strong>не
+					только web</strong></small>
+		</h2>
+	</section>
+
+	<section class="slide question">
+		<h2>Server-side</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Node.JS</h2>
+		<blockquote>
+			<p class="medium-content"><b>Node или Node.js</b> &mdash; программная платформа, основанная на движке V8
+				(транслирующем JavaScript в машинный код), превращающая JavaScript из узкоспециализированного языка в язык
+				общего назначения</p>
+		</blockquote>
+		<div style="position:relative;width: 100%; height: 75%;">
+			<img class="place" src="nodewtf.png" style="transform-origin: center;transform: translate(-50%,-80%) scale(1);">
+		</div>
+	</section>
+
+	<section class="slide question">
+		<div style="position:relative;width: 100%; height: 75%;">
+			<img class="place" src="nodejs.png" style="transform-origin: center;transform: translate(-50%,-30%) scale(1.5);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Node.JS</h2>
+		<ul>
+			<li><strong>Локальные и консольные утилиты</strong>
+				<ul>
+					<li>Сборщики, трансляторы, компиляторы</li>
+					<li>Скриптинг, CLI, генерация документации, тесты</li>
+				</ul>
+			</li>
+			<li><strong>Серверы</strong>
+				<ul>
+					<li>API, dev-сервера, бекенды для SPA</li>
+					<li>Highload & real-time системы: игры, чаты</li>
+					<li>Заплаты в узкие места уже готовых систем</li>
+				</ul>
+			</li>
+			<li><strong>Клиентские приложения</strong>
+				<ul>
+					<li>Кравлеры, сборщики данных, анализаторы логов, статистики</li>
+					<li>Desktop приложения (nw.js, Electron)</li>
+				</ul>
+			</li>
+			<li><strong>Железо</strong>
+				<ul>
+					<li>Работа на микроконтроллерах (Tessel, Espruino...)</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+
+	<section class="slide">
+		<h2><a href="https://habrahabr.ru/post/123154/" target="_blank">Производительность Node.js</a></h2>
+		<p class="medium-content"><strong>Дано:</strong></p>
+		<ul>
+			<li>Core i7-2600 Quad, 16Gb RAM</li>
+			<li>Ubuntu 12.04 LTS</li>
+			<li>Node.js <strong>v0.8.3</strong> (!!!)</li>
+		</ul>
+		<p><strong>Результат:</strong></p>
+		<h3 class="next" style="font-size: 300%; line-height: normal"><strong>Миллион одновременных соединений</strong></h3>
+
+	</section>
+
+	<section class="slide question">
+		<div><a href="http://node.green/" target="_blank">http://node.green</a></div>
+		<iframe src="http://node.green/#ES2016" frameborder="0" height="81%" width="110%" style="transform: translateX(-5%)"
+			scrolling="no"></iframe>
+	</section>
+
+
+	<section class="slide">
+		<h2>Node.JS</h2>
+		<ul>
+			<li><code>os</code> &mdash; информация о ОС, в которой запускается программа</li>
+			<li><code>child_process</code> &mdash; методы для запуска и управления дочерними процессами</li>
+			<li><code>assert</code> &mdash; набор простых методов тестирования</li>
+			<li><code>process</code> &mdash; информация о текущем процессе</li>
+			<li><code>net</code> (<code>dgram</code>) &mdash; создание tcp (и udp) серверов и клиентов</li>
+			<li><code>http</code> (<code>http<strong>2</strong></code>, <code>http<strong>s</strong></code>) &mdash; модули
+				для работы с http
+			</li>
+			<li><code>fs</code> &mdash; работа с файловой системой</li>
+			<li><code>path</code> &mdash; методы для парсинга и работы с путями в file system</li>
+			<li><code>url</code> &mdash; методы для парсинга и работы с url-адресами</li>
+			<li><code>crypto</code> &mdash; модуль, предоставляющий криптографические методы</li>
+			<li><code>stream</code> &mdash; модуль для потоковой обработки файлов</li>
+			<li><code>cluster</code> &mdash; модуль для запуска многопроцессорных приложений</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>npm</h2>
+		<p><em>npm</em> &mdash; менеджер пакетов, входящий в состав Node.js</p>
+		<ul>
+			<li><code>express</code> &mdash; веб-сервер</li>
+			<li><code>koa</code> &mdash; веб-сервер</li>
+			<li><code>babel</code> &mdash; бабель</li>
+			<li><code>webpack</code> &mdash; вебпак</li>
+			<li><code>pm2</code> &mdash; production-демон для запуска node.js приложений</li>
+			<li><code>typescript</code> &mdash; компилятор typescript</li>
+			<li><code>debug</code> &mdash; модуль для логирования node.js приложений</li>
+			<li><code>socket.io</code> &mdash; библиотека для работы с веб-сокетами</li>
+			<li>and more...</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>MongoDB</h2>
+		<div style="position:relative;width: 100%; height: 75%;">
+			<img class="place" src="mongo-logo.png"
+				style="transform-origin: center;transform: translate(-50%,-50%) scale(0.55);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>MongoDB</h2>
+		<div style="position:relative;width: 100%; height: 75%;">
+			<img class="place" src="mongo-document.png"
+				style="transform-origin: center;transform: translate(-50%,-50%) scale(1.1);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>MongoDB</h2>
+		<div style="position:relative;width: 100%; height: 75%;">
+			<img class="place" src="mongo-collection.png"
+				style="transform-origin: center;transform: translate(-50%,-50%) scale(1.5);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>MongoDB</h2>
+		<div style="position:relative;width: 100%; height: 75%;">
+			<img class="place" src="mongo-insert.png"
+				style="transform-origin: center;transform: translate(-50%,-50%) scale(1.5);">
+		</div>
+	</section>
+
+
+	<section class="slide question">
+		<h2>Desktop</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Chromium</h2>
+		<blockquote>
+			<p class="medium-content"><b>Chromium</b> &mdash; веб-браузер с открытым исходным кодом, разрабатываемый
+				сообществом The Chromium Authors, компанией Google и некоторыми другими компаниями</p>
+		</blockquote>
+	</section>
+
+	<section class="slide question">
+		<div style="position:relative;width: 100%; height: 75%;">
+			<img class="place" src="components-electron.png"
+				style="transform-origin: center;transform: translate(-50%,-50%) scale(0.6);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Отличия</h2>
+		<p class="small-content"></p>
+		<ul>
+			<li>Различная точка входа</li>
+			<li>Разный принцип построения билдов (Asar Archive vs. V8 Snapshot)</li>
+			<li>Использование Chromium</li>
+			<li>Разный контекст</li>
+			<li>Различия в процессе сборки</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Популярность</h2>
+		<p class="small-content">Несмотря на то, что NW.js существует дольше Electron, на Electron разработано <em>гораздо
+				больше популярных приложений</em></p>
+		<ul>
+			<li>Atom</li>
+			<li>Slack</li>
+			<li>Visual Studio Code</li>
+			<li>GitHub Desktop</li>
+			<li>Hyper</li>
+			<li>Discord</li>
+			<li>Spotify</li>
+		</ul>
+	</section>
+
+	<section class="slide question">
+		<h2><a href="https://www.youtube.com/watch?veQ9mSH4je0U" target="_blank" style="color: darkblue;">Доклад про
+				Electron by <em>Stefan Judis</em></a></h2>
+	</section>
+
+	<section class="slide question">
+		<h2>Mobile</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Mobile</h2>
+		<p class="small-content"></p>
+		<ul>
+			<li>PWA</li>
+			<li>React Native</li>
+			<li>Native Script</li>
+			<li>ReactXP</li>
+			<li>PhoneGap (Apache Cordova)</li>
+			<li>more...</li>
+		</ul>
+	</section>
+
+	<section class="slide question">
+		<div style="position:relative;width: 100%; height: 100%;">
+			<img class="place" src="mobile-gen.png"
+				style="transform-origin: center;transform: translate(-50%,-65%) scale(1);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Кто есть кто?</h2>
+		<blockquote>
+			<p><b>React Native</b> &mdash; фреймворк для построения нативных мобильных приложений с использованием React</p>
+		</blockquote>
+		<blockquote>
+			<p><b>ReactXP</b> &mdash; <s>новомодная</s> поделка от Microsoft</p>
+		</blockquote>
+		<blockquote>
+			<p><b>Native Script</b> &mdash; библиотека, позволяющая делать кросс-платформенные приложения, используя XML,
+				CSS, JavaScript</p>
+		</blockquote>
+		<blockquote>
+			<p><b>PhoneGap (Apache Cordova)</b> &mdash; платформа для разработки мобильных приложений, запускающихся в
+				webview, и имеющих доступ к системным API устройства</p>
+		</blockquote>
+	</section>
+
+	<section class="slide">
+		<h2>Например:</h2>
+		<pre class="hljs jsx">
+			<code>import React, { Component } from 'react';</code>
+			<code>import { Text, View, ProgressBar } from 'react-native';</code>
+			<code>import { TheNativeComponent } from './your-native-code';</code>
+			<code>class SomeComponent extends Component {</code>
+			<code>    render() {</code>
+			<code>        return (&lt;View&gt;</code>
+			<code>            &lt;Text&gt;Loading&lt;/Text&gt;</code>
+			<code>            &lt;ProgressBar /&gt;</code>
+			<code>            &lt;TheNativeComponent /&gt;</code>
+			<code>        &lt;/View&gt;)</code>
+			<code>    }</code>
+			<code>}</code>
+			<code> </code>
+		</pre>
+	</section>
+
+	<section class="slide question">
+		<div style="position:relative;width: 100%; height: 100%;">
+			<img class="place" src="mobile-from-js.png"
+				style="transform-origin: center;transform: translate(-50%,-65%) scale(1.5);">
+		</div>
+	</section>
+
+	<section class="slide question">
+		<div style="position:relative;width: 100%; height: 100%;">
+			<img class="place" src="native-script-works.png"
+				style="transform-origin: center;transform: translate(-50%,-65%) scale(1.05);">
+		</div>
+	</section>
+
+	<section class="slide question">
+		<h2>OS & SmartTV</h2>
+	</section>
+
+	<section class="slide">
+		<h2>OS & SmartTV</h2>
+		<blockquote>
+			<p><strong>WebOS</strong> &mdash; веб-приложение, организующее платформу (операционную
+				среду с набором готовых функций API) для выполнения других веб-приложений</p>
+		</blockquote>
+		<blockquote>
+			<p class="medium-content"><strong>Tizen</strong> &mdash; открытая операционная система на базе ядра Linux,
+				предназначенная для широкого круга устройств, включая смартфоны, интернет-планшеты, компьютеры,
+				автомобильные информационно-развлекательные системы, «умные» телевизоры и цифровые камеры</p>
+		</blockquote>
+		<blockquote>
+			<p class="medium-content"><strong>Chrome OS</strong> &mdash; ОС от компании Google. Главной особенностью
+				является доминирование веб-приложений над обычными функциями ОС</p>
+		</blockquote>
+	</section>
+
+
+	<section class="slide">
+		<h2 class="shout">Всем спасибо!</h2>
+	</section>
+
+	<div class="progress"></div>
+	<script src="/lib/shower/shower.min.js"></script>
+	<script src="/lib/hljs/highlight.pack.js"></script>
+	<script>
+		hljs.initHighlightingOnLoad();
+	</script>
+</body>
+
+</html>
