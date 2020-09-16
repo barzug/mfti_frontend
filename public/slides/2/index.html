@@ -28,6 +28,134 @@
 		</h2>
 	</section>
 
+    <section class="slide">
+        <h2 class="shout">
+            <span style="font-size: 80%; display: inline-block;">Теория клиент-серверного взаимодействия</span>
+            <br />
+            <span style="font-size: 55%; display: inline-block;">Порядок работы</span>
+        </h2>
+    </section>
+
+    <section class="slide question">
+        <h2>Как работают сайты?</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Клиент-серверная модель</h2>
+        <blockquote>
+            <p class="small-content"><b>Клиент &ndash; серверная модель</b> &mdash; вычислительная или сетевая архитектура,
+                в которой задания или сетевая нагрузка распределены между поставщиками услуг, называемыми серверами, и
+                заказчиками услуг, называемыми клиентами</p>
+        </blockquote>
+    </section>
+
+    <section class="slide">
+        <h2>Клиент-серверная модель</h2>
+        <div style="position:relative;width: 100%; height: 80%; overflow: hidden">
+            <img class="place" src="csm-large.png"
+                 style="transform-origin: center;transform: translate(-50%,-55%) scale(0.65);">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Структура web-приложений: этап 1</h2>
+        <div style="position:relative;width: 100%; height: 80%;">
+            <img class="place" src="web10.png"
+                 style="transform-origin: center; transform: translate(-50%, -50%) scale(0.45);" />
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Структура web-приложений: этап 1</h2>
+        <p class="medium-content"></p>
+        <ul lang="ru">
+            <li>
+                <strong>Frontend</strong>
+                <ol>
+                    <li>Отображение статических HTML-страниц (HTML, CSS)</li>
+                    <li>Контент на страницах, переходы по гиперссылкам</li>
+                </ol>
+            </li>
+            <li>
+                <strong>Backend</strong>
+                <ol>
+                    <li>Хранение статических документов и отдача по запросу по протоколу HTTP</li>
+                </ol>
+            </li>
+        </ul>
+        <p class="note">На данном этапе сайты назывались web-ресурсами</p>
+    </section>
+
+    <section class="slide">
+        <h2>Структура web-приложений: этап 2</h2>
+        <div style="position:relative;width: 100%; height: 80%;">
+            <img class="place" src="web20.png"
+                 style="transform-origin: center; transform: translate(-50%, -50%) scale(0.35);" />
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Структура web-приложений: этап 2</h2>
+        <ul lang="ru">
+            <li>
+                <strong>Frontend</strong>
+                <ol>
+                    <li>Отображение статических HTML-страниц (HTML, CSS)</li>
+                    <li>Контент на страницах, переходы по гиперссылкам</li>
+                    <li>Взаимодействие с сервисом посредством форм</li>
+                </ol>
+            </li>
+            <li>
+                <strong>Backend</strong>
+                <ol>
+                    <li>Хранение статических документов и отдача по запросу по протоколу HTTP</li>
+                    <li>Обработка пользовательских запросов и генерация динамических страниц</li>
+                    <li>Хранение данных в базе данных</li>
+                </ol>
+            </li>
+        </ul>
+        <p class="note">На данном этапе сайты назывались web-сервисами</p>
+    </section>
+
+    <section class="slide">
+        <h2>Структура web-приложений: этап 3</h2>
+        <div style="position:relative;width: 100%; height: 60%; overflow: hidden; margin-top: 10%;">
+            <img class="place" src="rest-api-on-rpi.png"
+                 style="transform-origin: center; transform: translate(-50%, -26%) scale(1.3);" />
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Структура web-приложений: этап 3</h2>
+        <ul lang="ru">
+            <li>
+                <strong>Frontend</strong>
+                <ol>
+                    <li>Хранение и доступ к статическому контенту (файлы стилей, скрипты)</li>
+                    <li>Генерация и отображение пользовательского интерфейса</li>
+                    <li>Взаимодействие с пользователем и выполнение запросов к API</li>
+                    <li>Обновление пользовательского интерфейса в ответ на действия пользователя</li>
+                </ol>
+            </li>
+            <li>
+                <strong>Backend</strong>
+                <ol>
+                    <li>Реализация публичного API</li>
+                    <li>Хранение данных в базе данных и работа с ними</li>
+                </ol>
+            </li>
+        </ul>
+        <p class="note">Сейчас такие сайты правильно называть web-приложениями</p>
+    </section>
+
+    <section class="slide">
+        <h2>Современные web-приложения</h2>
+        <div style="position:relative;width: 100%; height: 85%;">
+            <img class="place" src="web-application-models-over-time.png"
+                 style="transform-origin: center;transform: translate(-50%,-52%) scale(1.1);">
+        </div>
+    </section>
+
 	<section class="slide">
 		<h2 class="shout">JavaScript</h2>
 	</section>
@@ -460,195 +588,195 @@
 		</p>
 	</section>
 
-	<section class="slide">
-		<h2 class="shout">React</h2>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2 class="shout">React</h2>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>SPA</h2>
-		<p class="medium-content">
-			<blockquote>
-				<strong>Single page application</strong> &mdash; веб-сайт, использующий единственный
-				HTML-документ как оболочку для всех веб-страниц и организующий взаимодействие с пользователем через динамически
-				подгружаемые HTML, CSS, JavaScript
-			</blockquote>
-		</p>
+<!--	<section class="slide">-->
+<!--		<h2>SPA</h2>-->
+<!--		<p class="medium-content">-->
+<!--			<blockquote>-->
+<!--				<strong>Single page application</strong> &mdash; веб-сайт, использующий единственный-->
+<!--				HTML-документ как оболочку для всех веб-страниц и организующий взаимодействие с пользователем через динамически-->
+<!--				подгружаемые HTML, CSS, JavaScript-->
+<!--			</blockquote>-->
+<!--		</p>-->
 
-		<p class="small-content">
-			<ul lang="ru">
-				<li>React</li>
-				<li>Angular</li>
-				<li>Vue</li>
-			</ul>
-		</p>
-	</section>
+<!--		<p class="small-content">-->
+<!--			<ul lang="ru">-->
+<!--				<li>React</li>-->
+<!--				<li>Angular</li>-->
+<!--				<li>Vue</li>-->
+<!--			</ul>-->
+<!--		</p>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>Что такое React?</h2>
-		<p class="medium-content">
-			<blockquote>
-				<strong>React</strong> &mdash; JavaScript-библиотека для создания пользовательских интерфейсов
-			</blockquote>
-		</p>
+<!--	<section class="slide">-->
+<!--		<h2>Что такое React?</h2>-->
+<!--		<p class="medium-content">-->
+<!--			<blockquote>-->
+<!--				<strong>React</strong> &mdash; JavaScript-библиотека для создания пользовательских интерфейсов-->
+<!--			</blockquote>-->
+<!--		</p>-->
 
-		<p class="small-content">
-			<ul lang="ru">
-				<li>Создана и поддерживается facebook-ом</li>
-				<li>Основана на компонентах, представляющих собой функции от входных переменных и состояния</li>
-				<li>Использует Virtual Dom для оптимизации перерисовки интерфейса</li>
-			</ul>
-		</p>
+<!--		<p class="small-content">-->
+<!--			<ul lang="ru">-->
+<!--				<li>Создана и поддерживается facebook-ом</li>-->
+<!--				<li>Основана на компонентах, представляющих собой функции от входных переменных и состояния</li>-->
+<!--				<li>Использует Virtual Dom для оптимизации перерисовки интерфейса</li>-->
+<!--			</ul>-->
+<!--		</p>-->
 
-		<a href="https://ru.reactjs.org" target="_blank">ru.reactjs.org</a>
-	</section>
+<!--		<a href="https://ru.reactjs.org" target="_blank">ru.reactjs.org</a>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>React-компонент</h2>
-		<p class="medium-content"></p>
-		<pre class="hljs js">
-					<code>import React, {Component} from 'react';</code>
-					<code>import {render} from 'react-dom';</code>
-					<code> </code>
-					<code>class App extends Component {</code>
-					<code>	render() {</code>
-					<code>		return (</code>
-					<code>			&lt;h1&gt;Hello World&lt;/h1&gt;</code>
-					<code>		);</code>
-					<code>	}</code>
-					<code>}</code>
-	
-					<code>render(&lt;App &gt;, document.getElementById('root'));</li></code>
-					<code></code>
-					</pre>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>React-компонент</h2>-->
+<!--		<p class="medium-content"></p>-->
+<!--		<pre class="hljs js">-->
+<!--					<code>import React, {Component} from 'react';</code>-->
+<!--					<code>import {render} from 'react-dom';</code>-->
+<!--					<code> </code>-->
+<!--					<code>class App extends Component {</code>-->
+<!--					<code>	render() {</code>-->
+<!--					<code>		return (</code>-->
+<!--					<code>			&lt;h1&gt;Hello World&lt;/h1&gt;</code>-->
+<!--					<code>		);</code>-->
+<!--					<code>	}</code>-->
+<!--					<code>}</code>-->
+<!--	-->
+<!--					<code>render(&lt;App &gt;, document.getElementById('root'));</li></code>-->
+<!--					<code></code>-->
+<!--					</pre>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>Функциональные компоненты</h2>
-		<p class="medium-content"></p>
-		<pre class="hljs js">
-				<code>import React from 'react';</code>
-				<code> </code>
-				<code>const Avatar = (props) => &lt;img src={props.src} /&gt;</code>
-				<code> </code>
-				<code>const Header = () => (</code>
-				<code>	&lt;header&gt;</code>
-				<code>		&lt;Avatar src={'http://bestimage.com/1.png'} /&gt;</code>
-				<code>		Sergey Barsukov</code>
-				<code>	&lt;/header&gt;</code>
-				<code>)</code>
+<!--	<section class="slide">-->
+<!--		<h2>Функциональные компоненты</h2>-->
+<!--		<p class="medium-content"></p>-->
+<!--		<pre class="hljs js">-->
+<!--				<code>import React from 'react';</code>-->
+<!--				<code> </code>-->
+<!--				<code>const Avatar = (props) => &lt;img src={props.src} /&gt;</code>-->
+<!--				<code> </code>-->
+<!--				<code>const Header = () => (</code>-->
+<!--				<code>	&lt;header&gt;</code>-->
+<!--				<code>		&lt;Avatar src={'http://bestimage.com/1.png'} /&gt;</code>-->
+<!--				<code>		Sergey Barsukov</code>-->
+<!--				<code>	&lt;/header&gt;</code>-->
+<!--				<code>)</code>-->
 
-				<code>render(&lt;App /&gt;, document.getElementById('root'));</li></code>
-				<code></code>
-				</pre>
-	</section>
+<!--				<code>render(&lt;App /&gt;, document.getElementById('root'));</li></code>-->
+<!--				<code></code>-->
+<!--				</pre>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>JSX</h2>
-		<blockquote>
-			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое
-			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.
-		</blockquote>
+<!--	<section class="slide">-->
+<!--		<h2>JSX</h2>-->
+<!--		<blockquote>-->
+<!--			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое-->
+<!--			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.-->
+<!--		</blockquote>-->
 
-		<pre class="hljs js">
-			<code> </code>
-			<code>const element = (</code>
-			<code>	&lt;h1 className="greeting"/&gt;</code>
-			<code>		Привет, мир!</code>
-			<code>	&lt;/h1&gt;</code>
-			<code>);</code>
-			<code> </code>
-			<code> </code>
-		</pre>
-		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут
+<!--		<pre class="hljs js">-->
+<!--			<code> </code>-->
+<!--			<code>const element = (</code>-->
+<!--			<code>	&lt;h1 className="greeting"/&gt;</code>-->
+<!--			<code>		Привет, мир!</code>-->
+<!--			<code>	&lt;/h1&gt;</code>-->
+<!--			<code>);</code>-->
+<!--			<code> </code>-->
+<!--			<code> </code>-->
+<!--		</pre>-->
+<!--		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут-->
 
-	</section>
-
-
-	<section class="slide">
-		<h2>JSX</h2>
-		<blockquote>
-			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое
-			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.
-		</blockquote>
-		<pre class="hljs js">
-					<code> </code>
-					<code>const element = React.createElement(</code>
-					<code>	'h1',</code>
-  				<code>	{className: 'greeting'},</code>
-  				<code>	'Привет, мир!'</code>
-					<code>);</code>
-					<code> </code>
-					<code> </code>
-				</pre>
-		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут
-
-	</section>
-
-	<section class="slide">
-		<h2>JSX</h2>
-		<blockquote>
-			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое
-			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.
-		</blockquote>
-
-		<pre class="hljs js">
-				<code>// Примечание: этот код несколько упрощён.</code>
-				<code>const element = {</code>
-				<code>	type: 'h1',</code>
-				<code>	props: {</code>
-				<code>		className: 'greeting',</code>
-				<code>		children: 'Привет, мир!'</code>
-				<code>	}</code>
-				<code>};</code>
-				</pre>
-		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут
-
-	</section>
+<!--	</section>-->
 
 
+<!--	<section class="slide">-->
+<!--		<h2>JSX</h2>-->
+<!--		<blockquote>-->
+<!--			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое-->
+<!--			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.-->
+<!--		</blockquote>-->
+<!--		<pre class="hljs js">-->
+<!--					<code> </code>-->
+<!--					<code>const element = React.createElement(</code>-->
+<!--					<code>	'h1',</code>-->
+<!--  				<code>	{className: 'greeting'},</code>-->
+<!--  				<code>	'Привет, мир!'</code>-->
+<!--					<code>);</code>-->
+<!--					<code> </code>-->
+<!--					<code> </code>-->
+<!--				</pre>-->
+<!--		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут-->
 
-	// компонентный подход
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>Virtual DOM</h2>
-		<p class="medium-content"></p>
-		<ul>
-			<li>Вместо того, чтобы взаимодействовать с DOM напрямую, мы работаем с его <mark>легковесной копией</mark></li>
-			<li>Мы можем вносить изменения в копию, исходя из наших потребностей, а после этого применять изменения к
-				реальному DOM</li>
-			<li>При этом происходит сравнение DOM-дерева с его виртуальной копией, <mark>определяется разница и запускается
-					перерисовка того, что было изменено</mark></li>
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>JSX</h2>-->
+<!--		<blockquote>-->
+<!--			<strong>JSX</strong> &mdash; специальный синтаксис для описания React-компонентов. После компиляции каждое-->
+<!--			JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.-->
+<!--		</blockquote>-->
 
-	<section class="slide">
-		<h2>Virtual DOM</h2>
-		<div style="position:relative;width: 100%; height: 75%;">
-			<img class="place" src="dom-vdom.png"
-				style="transform-origin: center;transform: translate(-48.5%,-50%) scale(0.7);">
-		</div>
-	</section>
+<!--		<pre class="hljs js">-->
+<!--				<code>// Примечание: этот код несколько упрощён.</code>-->
+<!--				<code>const element = {</code>-->
+<!--				<code>	type: 'h1',</code>-->
+<!--				<code>	props: {</code>-->
+<!--				<code>		className: 'greeting',</code>-->
+<!--				<code>		children: 'Привет, мир!'</code>-->
+<!--				<code>	}</code>-->
+<!--				<code>};</code>-->
+<!--				</pre>-->
+<!--		<a href="https://babeljs.io/repl" target="_blank">https://babeljs.io/repl</a> &mdash; попробовать можно тут-->
+
+<!--	</section>-->
 
 
-	<section class="slide">
-		<h2 class="shout">Практика</h2>
-	</section>
 
-	<section class="slide">
-		<h2>Сreate-react-app</h2>
-		<blockquote>
-			<p class="small-content"><b><a href="https://github.com/facebook/create-react-app"
-						target="_blank">Сreate-react-app</a></b> &mdash; официально поддерживаемый способ создания одностраничных
-				приложений React. Он предлагает настройки сборки без ручной конфигурации.</p>
-			<p>«Под капотом» используются <a href="https://webpack.js.org/" target="_blank">Webpack</a>, <a
-					href="https://babeljs.io/" target="_blank">Babel</a> и многое другое
-			</p>
-		</blockquote>
-		<p><code>~$ npx create-react-app my-app	</code></p>
-		<p><code>~$ cd my-app	</code></p>
-		<p class="note"><a href="https://www.npmjs.com/package/npx" target="_blank">Npx</a> &mdash; утилита для запуска
-			npm-пакетов</p>
-	</section>
+<!--	// компонентный подход-->
+
+<!--	<section class="slide">-->
+<!--		<h2>Virtual DOM</h2>-->
+<!--		<p class="medium-content"></p>-->
+<!--		<ul>-->
+<!--			<li>Вместо того, чтобы взаимодействовать с DOM напрямую, мы работаем с его <mark>легковесной копией</mark></li>-->
+<!--			<li>Мы можем вносить изменения в копию, исходя из наших потребностей, а после этого применять изменения к-->
+<!--				реальному DOM</li>-->
+<!--			<li>При этом происходит сравнение DOM-дерева с его виртуальной копией, <mark>определяется разница и запускается-->
+<!--					перерисовка того, что было изменено</mark></li>-->
+<!--		</ul>-->
+<!--	</section>-->
+
+<!--	<section class="slide">-->
+<!--		<h2>Virtual DOM</h2>-->
+<!--		<div style="position:relative;width: 100%; height: 75%;">-->
+<!--			<img class="place" src="dom-vdom.png"-->
+<!--				style="transform-origin: center;transform: translate(-48.5%,-50%) scale(0.7);">-->
+<!--		</div>-->
+<!--	</section>-->
+
+
+<!--	<section class="slide">-->
+<!--		<h2 class="shout">Практика</h2>-->
+<!--	</section>-->
+
+<!--	<section class="slide">-->
+<!--		<h2>Сreate-react-app</h2>-->
+<!--		<blockquote>-->
+<!--			<p class="small-content"><b><a href="https://github.com/facebook/create-react-app"-->
+<!--						target="_blank">Сreate-react-app</a></b> &mdash; официально поддерживаемый способ создания одностраничных-->
+<!--				приложений React. Он предлагает настройки сборки без ручной конфигурации.</p>-->
+<!--			<p>«Под капотом» используются <a href="https://webpack.js.org/" target="_blank">Webpack</a>, <a-->
+<!--					href="https://babeljs.io/" target="_blank">Babel</a> и многое другое-->
+<!--			</p>-->
+<!--		</blockquote>-->
+<!--		<p><code>~$ npx create-react-app my-app	</code></p>-->
+<!--		<p><code>~$ cd my-app	</code></p>-->
+<!--		<p class="note"><a href="https://www.npmjs.com/package/npx" target="_blank">Npx</a> &mdash; утилита для запуска-->
+<!--			npm-пакетов</p>-->
+<!--	</section>-->
 
 	<!-- <section class="slide">
 		<h2>Полезные ссылки</h2>
