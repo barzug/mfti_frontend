@@ -693,104 +693,104 @@
 	</pre>
 	</section>
 
-	<section class="slide">
-		<h2 class="shout">Жизненный цикл</h2>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2 class="shout">Жизненный цикл</h2>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>Внутреннее состояние</h2>
-		<p>Объект state описывает внутреннее состояние компонента, он похож на props за тем исключением, что состояние
-			определяется внутри компонента и доступно только из компонента. Если props представляет входные данные, которые
-			передаются в компонент извне, то состояние хранит такие объекты, которые создаются в компоненте и полностью
-			зависят от компонента.
-		</p>
-		<ul>
-			<li><code>this.setState()</code> &mdash; асинхронная функция, в которую передается объект с новыми значениями
-				состояния</li>
-			<!-- <li><code>this.setState()</code> &mdash; асинхронная функция, в которую передается объект с новыми значениями
-				состояния</li> -->
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>Внутреннее состояние</h2>-->
+<!--		<p>Объект state описывает внутреннее состояние компонента, он похож на props за тем исключением, что состояние-->
+<!--			определяется внутри компонента и доступно только из компонента. Если props представляет входные данные, которые-->
+<!--			передаются в компонент извне, то состояние хранит такие объекты, которые создаются в компоненте и полностью-->
+<!--			зависят от компонента.-->
+<!--		</p>-->
+<!--		<ul>-->
+<!--			<li><code>this.setState()</code> &mdash; асинхронная функция, в которую передается объект с новыми значениями-->
+<!--				состояния</li>-->
+<!--			&lt;!&ndash; <li><code>this.setState()</code> &mdash; асинхронная функция, в которую передается объект с новыми значениями-->
+<!--				состояния</li> &ndash;&gt;-->
+<!--		</ul>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>Методы жизненного цикла</h2>
-		<p>React предоставляет разработчикам множество методов и «хуков», которые вызываются во время жизненного цикла
-			компонента, они позволяют нам обновлять UI и состояние приложения.
-		</p>
-		<ul>
-			<li><code>componentDidMount()</code></li>
-			<li><code>componentDidUpdate(prevProps, prevState)</code></li>
-			<li><code>componentWillUnmount()</code></li>
-			<li><code>shouldComponentUpdate(nextProps, nextState)</code></li>
-			<li><code>static getDerivedStateFromProps(props, state)</code></li>
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>Методы жизненного цикла</h2>-->
+<!--		<p>React предоставляет разработчикам множество методов и «хуков», которые вызываются во время жизненного цикла-->
+<!--			компонента, они позволяют нам обновлять UI и состояние приложения.-->
+<!--		</p>-->
+<!--		<ul>-->
+<!--			<li><code>componentDidMount()</code></li>-->
+<!--			<li><code>componentDidUpdate(prevProps, prevState)</code></li>-->
+<!--			<li><code>componentWillUnmount()</code></li>-->
+<!--			<li><code>shouldComponentUpdate(nextProps, nextState)</code></li>-->
+<!--			<li><code>static getDerivedStateFromProps(props, state)</code></li>-->
+<!--		</ul>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>Методы жизненного цикла</h2>
-		<div style="position:relative;width: 100%; height: 100%;">
-			<img class="place" src="lifecycle.png"
-				style="transform-origin: center;transform: translate(-50%,-55%) scale(0.43);">
-		</div>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>Методы жизненного цикла</h2>-->
+<!--		<div style="position:relative;width: 100%; height: 100%;">-->
+<!--			<img class="place" src="lifecycle.png"-->
+<!--				style="transform-origin: center;transform: translate(-50%,-55%) scale(0.43);">-->
+<!--		</div>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>componentDidMount()</h2>
-		</p>
-		<ul>
-			<mark>ДЕЛАЙТЕ:</mark>
-			<li>Выполняйте сайд-эффекты (Запросы к серверу и т.д.)</li>
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>componentDidMount()</h2>-->
+<!--		</p>-->
+<!--		<ul>-->
+<!--			<mark>ДЕЛАЙТЕ:</mark>-->
+<!--			<li>Выполняйте сайд-эффекты (Запросы к серверу и т.д.)</li>-->
+<!--		</ul>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>componentDidUpdate(prevProps, prevState)</h2>
-		</p>
-		<ul>
-			<mark>ДЕЛАЙТЕ:</mark>
-			<li>Выполняйте сайд-эффекты (Запросы к серверу и т.д.)</li>
-			<br>
-			<mark>НЕ ДЕЛАЙТЕ:</mark>
-			<li>Не вызывайте this.setState т.к. это может вызвать циклическую перерисовку.</li>
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>componentDidUpdate(prevProps, prevState)</h2>-->
+<!--		</p>-->
+<!--		<ul>-->
+<!--			<mark>ДЕЛАЙТЕ:</mark>-->
+<!--			<li>Выполняйте сайд-эффекты (Запросы к серверу и т.д.)</li>-->
+<!--			<br>-->
+<!--			<mark>НЕ ДЕЛАЙТЕ:</mark>-->
+<!--			<li>Не вызывайте this.setState т.к. это может вызвать циклическую перерисовку.</li>-->
+<!--		</ul>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>componentWillUnmount()</h2>
-		</p>
-		<ul>
-			<mark>ДЕЛАЙТЕ:</mark>
-			<li>Удаляйте таймеры и слушателей (listeners) созданных во время жизни компонента.</li>
-			<br>
-			<mark>НЕ ДЕЛАЙТЕ:</mark>
-			<li>Не вызывайте this.setState, не стартуйте новых слушателей или таймеры.</li>
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>componentWillUnmount()</h2>-->
+<!--		</p>-->
+<!--		<ul>-->
+<!--			<mark>ДЕЛАЙТЕ:</mark>-->
+<!--			<li>Удаляйте таймеры и слушателей (listeners) созданных во время жизни компонента.</li>-->
+<!--			<br>-->
+<!--			<mark>НЕ ДЕЛАЙТЕ:</mark>-->
+<!--			<li>Не вызывайте this.setState, не стартуйте новых слушателей или таймеры.</li>-->
+<!--		</ul>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>shouldComponentUpdate(nextProps, nextState)</h2>
-		</p>
-		<ul>
-			<mark>ДЕЛАЙТЕ:</mark>
-			<li>Используйте для оптимизации производительности компонента</li>
-			<br>
-			<mark>НЕ ДЕЛАЙТЕ:</mark>
-			<li>Не выполняйте никаких сайд-эффектов (Вызовы AJAX и т.д.)</li>
-			<li>Не вызывайте this.setState</li>
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>shouldComponentUpdate(nextProps, nextState)</h2>-->
+<!--		</p>-->
+<!--		<ul>-->
+<!--			<mark>ДЕЛАЙТЕ:</mark>-->
+<!--			<li>Используйте для оптимизации производительности компонента</li>-->
+<!--			<br>-->
+<!--			<mark>НЕ ДЕЛАЙТЕ:</mark>-->
+<!--			<li>Не выполняйте никаких сайд-эффектов (Вызовы AJAX и т.д.)</li>-->
+<!--			<li>Не вызывайте this.setState</li>-->
+<!--		</ul>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2>static getDerivedStateFromProps(props, state)</h2>
-		</p>
-		<ul>
-			<mark>ДЕЛАЙТЕ:</mark>
-			<li>Этот метод существует для редких случаев, когда состояние зависит от изменений в пропсах.</li>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>static getDerivedStateFromProps(props, state)</h2>-->
+<!--		</p>-->
+<!--		<ul>-->
+<!--			<mark>ДЕЛАЙТЕ:</mark>-->
+<!--			<li>Этот метод существует для редких случаев, когда состояние зависит от изменений в пропсах.</li>-->
+<!--	</section>-->
 
-	<section class="slide">
-		<h2 class="shout">React Router</h2>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2 class="shout">React Router</h2>-->
+<!--	</section>-->
 
 
 	<section class="slide">
